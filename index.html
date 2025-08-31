@@ -113,73 +113,154 @@
             animation: innerPulse 4s ease-in-out infinite;
         }
 
-        .light-source {
+        .planet-system {
             position: absolute;
-            left: -250px;
+            top: 20%;
+            right: 15%;
+            width: 150px;
+            height: 150px;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            animation: planetRotate 30s linear infinite;
+        }
+
+        .planet-main {
+            width: 80px;
+            height: 80px;
             top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle at 30% 30%, 
+                #4a90e2 0%, 
+                #2c5aa0 40%, 
+                #1e3a5f 100%);
+            box-shadow: 
+                inset -10px -10px 20px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(74, 144, 226, 0.4);
+        }
+
+        .planet-moon {
+            width: 20px;
+            height: 20px;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: radial-gradient(circle at 40% 40%, 
+                #e8e8e8 0%, 
+                #a0a0a0 60%, 
+                #707070 100%);
+            animation: moonOrbit 8s linear infinite;
+            transform-origin: 40px 50px;
+        }
+
+        .asteroid-belt {
+            position: absolute;
+            bottom: 25%;
+            left: 10%;
             width: 200px;
-            height: 4px;
-            background: linear-gradient(90deg, 
-                transparent 0%,
-                rgba(255, 255, 255, 0.3) 20%,
-                rgba(255, 255, 255, 0.8) 80%,
-                rgba(255, 255, 255, 1) 100%);
-            transform: translateY(-50%);
-            animation: lightPulse 3s ease-in-out infinite;
+            height: 50px;
         }
 
-        .spectrum-output {
+        .asteroid {
             position: absolute;
-            right: -300px;
-            top: 50%;
-            width: 250px;
-            height: 180px;
-            transform: translateY(-50%);
+            width: 3px;
+            height: 3px;
+            background: #8b7355;
+            border-radius: 50%;
+            animation: asteroidDrift 15s linear infinite;
         }
 
-        .spectrum-band {
+        .space-station {
             position: absolute;
-            width: 100%;
-            height: 12px;
+            top: 30%;
+            left: 20%;
+            width: 60px;
+            height: 20px;
+            background: linear-gradient(90deg, #2c3e50, #34495e, #2c3e50);
+            border-radius: 10px;
+            animation: stationFloat 12s ease-in-out infinite;
+        }
+
+        .station-solar {
+            position: absolute;
+            width: 15px;
+            height: 40px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            top: -10px;
+            left: -5px;
+            border-radius: 2px;
+            animation: solarPanelGlow 6s ease-in-out infinite;
+        }
+
+        .station-solar:after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 40px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            right: -50px;
+            top: 0;
+            border-radius: 2px;
+        }
+
+        .neural-network {
+            position: absolute;
+            top: 0;
             left: 0;
-            border-radius: 6px;
-            animation: spectrumFlow 4s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.3;
         }
 
-        .band-violet { 
-            background: linear-gradient(90deg, transparent, #8B00FF, rgba(139, 0, 255, 0.3));
-            top: 20px;
-            animation-delay: 0s;
+        .network-node {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(100, 200, 255, 0.8);
+            border-radius: 50%;
+            animation: nodePulse 4s ease-in-out infinite;
         }
-        .band-indigo { 
-            background: linear-gradient(90deg, transparent, #4B0082, rgba(75, 0, 130, 0.3));
-            top: 40px;
-            animation-delay: 0.1s;
+
+        .network-connection {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(100, 200, 255, 0.4) 50%, 
+                transparent 100%);
+            transform-origin: left center;
+            animation: connectionFlow 8s ease-in-out infinite;
         }
-        .band-blue { 
-            background: linear-gradient(90deg, transparent, #0000FF, rgba(0, 0, 255, 0.3));
-            top: 60px;
-            animation-delay: 0.2s;
+
+        .quantum-field {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(100, 200, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(200, 100, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 200, 100, 0.03) 0%, transparent 70%);
+            animation: quantumShift 20s ease-in-out infinite;
         }
-        .band-green { 
-            background: linear-gradient(90deg, transparent, #00FF00, rgba(0, 255, 0, 0.3));
-            top: 80px;
-            animation-delay: 0.3s;
-        }
-        .band-yellow { 
-            background: linear-gradient(90deg, transparent, #FFFF00, rgba(255, 255, 0, 0.3));
-            top: 100px;
-            animation-delay: 0.4s;
-        }
-        .band-orange { 
-            background: linear-gradient(90deg, transparent, #FF7F00, rgba(255, 127, 0, 0.3));
-            top: 120px;
-            animation-delay: 0.5s;
-        }
-        .band-red { 
-            background: linear-gradient(90deg, transparent, #FF0000, rgba(255, 0, 0, 0.3));
-            top: 140px;
-            animation-delay: 0.6s;
+
+        .holographic-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(100, 200, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 200, 255, 0.1) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: gridPulse 10s ease-in-out infinite;
+            opacity: 0.2;
         }
 
         .prism-title {
@@ -223,29 +304,38 @@
             animation: driftSlow 15s linear infinite;
         }
 
-        .orbital-ring {
+        .satellite {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 500px;
-            height: 500px;
-            transform: translate(-50%, -50%);
-            border: 1px solid rgba(100, 200, 255, 0.2);
-            border-radius: 50%;
-            animation: orbitSlow 30s linear infinite;
+            top: 60%;
+            right: 25%;
+            width: 40px;
+            height: 15px;
+            background: linear-gradient(45deg, #34495e, #2c3e50);
+            border-radius: 3px;
+            animation: satelliteOrbit 25s linear infinite;
+            transform-origin: -100px -50px;
         }
 
-        .orbital-ring::before {
+        .satellite::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            height: 300px;
-            transform: translate(-50%, -50%);
-            border: 1px solid rgba(200, 100, 255, 0.15);
-            border-radius: 50%;
-            animation: orbitSlow 20s linear infinite reverse;
+            width: 8px;
+            height: 25px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            left: -3px;
+            top: -5px;
+            border-radius: 1px;
+        }
+
+        .satellite::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 25px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            right: -3px;
+            top: -5px;
+            border-radius: 1px;
         }
 
         .custom-cursor {
@@ -296,15 +386,57 @@
             50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
         }
 
-        @keyframes lightPulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
+        @keyframes planetRotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        @keyframes spectrumFlow {
-            0% { opacity: 0; transform: translateX(-50px) scaleX(0); }
-            20% { opacity: 1; transform: translateX(0) scaleX(1); }
-            100% { opacity: 0.6; transform: translateX(100px) scaleX(0.8); }
+        @keyframes moonOrbit {
+            0% { transform: translateX(-50%) rotate(0deg) translateY(-40px) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg) translateY(-40px) rotate(-360deg); }
+        }
+
+        @keyframes asteroidDrift {
+            0% { transform: translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(200px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes stationFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        @keyframes solarPanelGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(52, 152, 219, 0.8); }
+        }
+
+        @keyframes satelliteOrbit {
+            0% { transform: rotate(0deg) translateX(-100px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(-100px) rotate(-360deg); }
+        }
+
+        @keyframes nodePulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        @keyframes connectionFlow {
+            0% { opacity: 0; transform: scaleX(0); }
+            50% { opacity: 1; transform: scaleX(1); }
+            100% { opacity: 0; transform: scaleX(0); }
+        }
+
+        @keyframes quantumShift {
+            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+            50% { opacity: 0.7; transform: scale(1.1) rotate(180deg); }
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
         }
 
         @keyframes titleGlow {
@@ -385,31 +517,33 @@
     <div class="space-container">
         <div class="stars"></div>
         <div class="distant-galaxy"></div>
+        <div class="quantum-field"></div>
+        <div class="holographic-grid"></div>
+        <div class="neural-network"></div>
     </div>
+
+    <div class="planet-system">
+        <div class="planet planet-main"></div>
+        <div class="planet planet-moon"></div>
+    </div>
+
+    <div class="space-station">
+        <div class="station-solar"></div>
+    </div>
+
+    <div class="satellite"></div>
+
+    <div class="asteroid-belt"></div>
 
     <div class="space-particles"></div>
     <div class="custom-cursor"></div>
 
-    <div class="main-content interactive-zone">
-        <div class="orbital-ring"></div>
-        
-        <div class="prism-container">
-            <div class="light-source"></div>
-            
+    <div class="main-content interactive-zone">        
+        <div class="prism-container">            
             <div class="geometric-prism">
                 <div class="prism-crystal"></div>
                 <div class="prism-inner"></div>
-            </div>
-            
-            <div class="spectrum-output">
-                <div class="spectrum-band band-violet"></div>
-                <div class="spectrum-band band-indigo"></div>
-                <div class="spectrum-band band-blue"></div>
-                <div class="spectrum-band band-green"></div>
-                <div class="spectrum-band band-yellow"></div>
-                <div class="spectrum-band band-orange"></div>
-                <div class="spectrum-band band-red"></div>
-            </div>
+            </div>            
         </div>
 
         <h1 class="prism-title">PRISM</h1>
@@ -449,10 +583,81 @@
             }
         }
 
+        // Create neural network
+        function createNeuralNetwork() {
+            const networkContainer = document.querySelector('.neural-network');
+            const nodeCount = 12;
+            const nodes = [];
+            
+            // Create nodes
+            for (let i = 0; i < nodeCount; i++) {
+                const node = document.createElement('div');
+                node.className = 'network-node';
+                
+                const x = Math.random() * 90 + 5; // 5-95%
+                const y = Math.random() * 90 + 5;
+                
+                node.style.left = x + '%';
+                node.style.top = y + '%';
+                node.style.animationDelay = Math.random() * 4 + 's';
+                
+                networkContainer.appendChild(node);
+                nodes.push({ element: node, x, y });
+            }
+            
+            // Create connections between nearby nodes
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const node1 = nodes[i];
+                    const node2 = nodes[j];
+                    
+                    const distance = Math.sqrt(
+                        Math.pow(node1.x - node2.x, 2) + 
+                        Math.pow(node1.y - node2.y, 2)
+                    );
+                    
+                    // Only connect nearby nodes
+                    if (distance < 30) {
+                        const connection = document.createElement('div');
+                        connection.className = 'network-connection';
+                        
+                        const angle = Math.atan2(node2.y - node1.y, node2.x - node1.x);
+                        const length = distance * (window.innerWidth / 100); // Convert % to px approximately
+                        
+                        connection.style.left = node1.x + '%';
+                        connection.style.top = node1.y + '%';
+                        connection.style.width = distance + '%';
+                        connection.style.transform = `rotate(${angle}rad)`;
+                        connection.style.animationDelay = Math.random() * 8 + 's';
+                        
+                        networkContainer.appendChild(connection);
+                    }
+                }
+            }
+        }
+
+        // Create asteroid belt
+        function createAsteroidBelt() {
+            const beltContainer = document.querySelector('.asteroid-belt');
+            const asteroidCount = 15;
+            
+            for (let i = 0; i < asteroidCount; i++) {
+                const asteroid = document.createElement('div');
+                asteroid.className = 'asteroid';
+                
+                asteroid.style.left = (i * 12 + Math.random() * 10) + 'px';
+                asteroid.style.top = Math.random() * 50 + 'px';
+                asteroid.style.animationDelay = Math.random() * 15 + 's';
+                asteroid.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
+                beltContainer.appendChild(asteroid);
+            }
+        }
+
         // Create subtle space particles
         function createSpaceParticles() {
             const particlesContainer = document.querySelector('.space-particles');
-            const particleCount = 30; // Much fewer particles
+            const particleCount = 25; // Fewer particles
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -487,15 +692,17 @@
 
         // Initialize
         createStars();
+        createNeuralNetwork();
+        createAsteroidBelt();
         createSpaceParticles();
 
-        // Subtle ambient effects
-        let ambientPulse = 0;
+        // Dynamic quantum field effects
+        let quantumPhase = 0;
         setInterval(() => {
-            ambientPulse += 0.02;
-            const intensity = Math.sin(ambientPulse) * 0.1 + 0.9;
-            const orbitalRing = document.querySelector('.orbital-ring');
-            orbitalRing.style.opacity = intensity * 0.3;
+            quantumPhase += 0.01;
+            const quantumField = document.querySelector('.quantum-field');
+            const intensity = Math.sin(quantumPhase) * 0.3 + 0.7;
+            quantumField.style.opacity = intensity * 0.8;
         }, 100);
     </script>
 </body>
