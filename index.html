@@ -55,7 +55,6 @@
             border-radius: 60%;
             animation: galaxyRotate 60s linear infinite;
             filter: blur(1px);
-            transition: transform 0.3s ease-out;
         }
 
         .main-content {
@@ -66,7 +65,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: transform 0.5s ease-out;
         }
 
         .prism-container {
@@ -75,7 +73,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease-out;
         }
 
         .geometric-prism {
@@ -121,7 +118,6 @@
             right: 15%;
             width: 150px;
             height: 150px;
-            transition: transform 0.3s ease-out;
         }
 
         .planet {
@@ -164,7 +160,6 @@
             left: 10%;
             width: 200px;
             height: 50px;
-            transition: transform 0.3s ease-out;
         }
 
         .asteroid {
@@ -185,7 +180,6 @@
             background: linear-gradient(90deg, #2c3e50, #34495e, #2c3e50);
             border-radius: 10px;
             animation: stationFloat 12s ease-in-out infinite;
-            transition: transform 0.3s ease-out;
         }
 
         .station-solar {
@@ -318,7 +312,6 @@
             border-radius: 3px;
             animation: satelliteOrbit 25s linear infinite;
             transform-origin: -100px -50px;
-            transition: transform 0.3s ease-out;
         }
 
         .satellite::before {
@@ -355,52 +348,63 @@
             transition: transform 0.1s ease;
         }
 
-        /* Second section */
-        .second-section {
-            position: relative;
-            z-index: 10;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            margin-top: -25vh;
-        }
-
-        .options-container {
+        /* Footer navigation */
+        .footer-nav {
+            position: fixed;
+            bottom: 15vh;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
             display: flex;
             gap: 4rem;
-            margin-top: 2rem;
+            white-space: nowrap;
         }
 
-        .option-card {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(100, 200, 255, 0.05) 50%,
-                rgba(200, 100, 255, 0.05) 100%);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            min-width: 200px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .option-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: rgba(100, 200, 255, 0.5);
-            box-shadow: 0 20px 40px rgba(100, 200, 255, 0.2);
-        }
-
-        .option-title {
+        .footer-link {
             color: #ffffff;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+            text-shadow: 
+                0 0 20px rgba(100, 200, 255, 0.6),
+                0 0 40px rgba(200, 100, 255, 0.4),
+                0 0 60px rgba(255, 200, 100, 0.3);
+            animation: titleGlow 6s ease-in-out infinite;
+        }
+
+        .footer-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(100, 200, 255, 0.3) 0%,
+                rgba(200, 100, 255, 0.3) 100%);
+            border-radius: 8px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s ease;
+        }
+
+        .footer-link:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .footer-link:hover {
+            text-shadow: 
+                0 0 30px rgba(100, 200, 255, 0.8),
+                0 0 60px rgba(200, 100, 255, 0.6),
+                0 0 90px rgba(255, 200, 100, 0.4);
+            transform: translateY(-2px) scale(1.05);
         }
 
         @keyframes gentleTwinkle {
@@ -542,12 +546,12 @@
                 width: 150px;
                 height: 150px;
             }
-            .options-container {
-                flex-direction: column;
-                gap: 2rem;
+            .footer-nav {
+                gap: 2.5rem;
             }
-            .option-card {
-                min-width: 250px;
+            .footer-link {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.5rem;
             }
         }
     </style>
@@ -589,18 +593,10 @@
         <p class="subtitle">PROXIMITY & RENDEZVOUS INTEGRATED SIMULATION MODEL</p>
     </div>
 
-    <div class="second-section">
-        <div class="options-container">
-            <div class="option-card">
-                <div class="option-title">CONTACT US</div>
-            </div>
-            <div class="option-card">
-                <div class="option-title">DONATE</div>
-            </div>
-            <div class="option-card">
-                <div class="option-title">SOCIAL MEDIA</div>
-            </div>
-        </div>
+    <div class="footer-nav">
+        <a href="#" class="footer-link">CONTACT US</a>
+        <a href="#" class="footer-link">DONATE</a>
+        <a href="#" class="footer-link">SOCIAL MEDIA</a>
     </div>
 
     <script>
@@ -815,7 +811,3 @@
             satellite.style.transform = `translateY(-${spaceObjectOffset}vh)`;
             asteroidBelt.style.transform = `translateY(-${spaceObjectOffset}vh)`;
             distantGalaxy.style.transform = `translateY(-${spaceObjectOffset}vh)`;
-        });
-    </script>
-</body>
-</html>
