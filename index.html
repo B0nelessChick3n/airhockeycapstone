@@ -356,7 +356,7 @@
             transform: translateX(-50%);
             z-index: 100;
             display: flex;
-            gap: 4rem;
+            gap: 5rem;
             white-space: nowrap;
         }
 
@@ -547,7 +547,7 @@
                 height: 150px;
             }
             .footer-nav {
-                gap: 2.5rem;
+                gap: 3rem;
             }
             .footer-link {
                 font-size: 0.9rem;
@@ -781,33 +781,6 @@
             const intensity = Math.sin(quantumPhase) * 0.3 + 0.7;
             quantumField.style.opacity = intensity * 0.8;
         }, 100);
-
-        // Scroll handling
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            
-            const scrollProgress = Math.min(scrollY / windowHeight, 1);
-            
-            // Main content moves up faster
-            const mainContent = document.querySelector('.main-content');
-            mainContent.style.transform = `translateY(-${scrollProgress * 120}vh)`;
-            
-            // Prism fades out
-            const prismContainer = document.querySelector('.prism-container');
-            prismContainer.style.opacity = Math.max(1 - scrollProgress * 2, 0);
-            
-            // Space objects move up but less than text
-            const planetSystem = document.querySelector('.planet-system');
-            const spaceStation = document.querySelector('.space-station');
-            const satellite = document.querySelector('.satellite');
-            const asteroidBelt = document.querySelector('.asteroid-belt');
-            const distantGalaxy = document.querySelector('.distant-galaxy');
-            
-            const spaceObjectOffset = scrollProgress * 50;
-            
-            planetSystem.style.transform = `translateY(-${spaceObjectOffset}vh)`;
-            spaceStation.style.transform = `translateY(-${spaceObjectOffset}vh)`;
-            satellite.style.transform = `translateY(-${spaceObjectOffset}vh)`;
-            asteroidBelt.style.transform = `translateY(-${spaceObjectOffset}vh)`;
-            distantGalaxy.style.transform = `translateY(-${spaceObjectOffset}vh)`;
+    </script>
+</body>
+</html>
