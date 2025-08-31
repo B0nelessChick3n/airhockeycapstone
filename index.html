@@ -348,16 +348,20 @@
             transition: transform 0.1s ease;
         }
 
-        /* Footer navigation */
+        /* Updated Footer Navigation - Independent floating buttons positioned between text and bottom */
         .footer-nav {
             position: fixed;
-            bottom: 15vh;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
             display: flex;
-            gap: 5rem;
-            white-space: nowrap;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 3rem;
+            height: 25vh;
+            min-height: 120px;
+            padding-bottom: 2rem;
         }
 
         .footer-link {
@@ -367,15 +371,28 @@
             letter-spacing: 0.15em;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.4s ease;
             position: relative;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
             white-space: nowrap;
             text-shadow: 
                 0 0 20px rgba(100, 200, 255, 0.6),
                 0 0 40px rgba(200, 100, 255, 0.4),
                 0 0 60px rgba(255, 200, 100, 0.3);
-            animation: titleGlow 6s ease-in-out infinite;
+            transition: all 0.4s ease;
+            border-radius: 8px;
+        }
+
+        /* Individual floating animations for each button */
+        .footer-link:nth-child(1) {
+            animation: float1 6s ease-in-out infinite;
+        }
+
+        .footer-link:nth-child(2) {
+            animation: float2 7s ease-in-out infinite;
+        }
+
+        .footer-link:nth-child(3) {
+            animation: float3 8s ease-in-out infinite;
         }
 
         .footer-link::before {
@@ -392,6 +409,7 @@
             opacity: 0;
             transform: scale(0.8);
             transition: all 0.4s ease;
+            z-index: -1;
         }
 
         .footer-link:hover::before {
@@ -404,7 +422,27 @@
                 0 0 30px rgba(100, 200, 255, 0.8),
                 0 0 60px rgba(200, 100, 255, 0.6),
                 0 0 90px rgba(255, 200, 100, 0.4);
-            transform: translateY(-2px) scale(1.05);
+            transform: translateY(-8px) scale(1.08);
+        }
+
+        /* Individual floating keyframes */
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(1deg); }
+            66% { transform: translateY(-8px) rotate(-0.5deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-12px) rotate(-1deg); }
+            50% { transform: translateY(-20px) rotate(0.5deg); }
+            75% { transform: translateY(-6px) rotate(-0.3deg); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            40% { transform: translateY(-18px) rotate(1.2deg); }
+            80% { transform: translateY(-4px) rotate(-0.8deg); }
         }
 
         @keyframes gentleTwinkle {
@@ -534,24 +572,172 @@
             transition: transform 0.5s ease;
         }
 
+        /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
             .prism-title {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
+                letter-spacing: 0.1em;
             }
+            
             .subtitle {
-                font-size: 0.9rem;
-                padding: 0 1rem;
+                font-size: 0.8rem;
+                padding: 0 1.5rem;
+                max-width: 90%;
+                line-height: 1.6;
             }
+            
             .geometric-prism {
-                width: 150px;
-                height: 150px;
+                width: 120px;
+                height: 120px;
             }
+            
+            .prism-container {
+                margin-bottom: 2rem;
+            }
+            
             .footer-nav {
-                gap: 3rem;
+                gap: 1.5rem;
+                height: 20vh;
+                min-height: 100px;
+                padding-bottom: 1.5rem;
             }
+            
             .footer-link {
                 font-size: 0.9rem;
-                padding: 0.3rem 0.5rem;
+                padding: 0.6rem 1rem;
+                letter-spacing: 0.1em;
+            }
+
+            /* Reduced space elements on mobile */
+            .planet-system {
+                width: 100px;
+                height: 100px;
+                top: 15%;
+                right: 10%;
+            }
+            
+            .planet-main {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .planet-moon {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .space-station {
+                width: 40px;
+                height: 15px;
+                top: 25%;
+                left: 15%;
+            }
+            
+            .satellite {
+                width: 30px;
+                height: 12px;
+                top: 65%;
+                right: 20%;
+            }
+            
+            .distant-galaxy {
+                width: 200px;
+                height: 130px;
+                top: 10%;
+                right: 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .prism-title {
+                font-size: 2rem;
+                letter-spacing: 0.05em;
+            }
+            
+            .subtitle {
+                font-size: 0.75rem;
+                padding: 0 1rem;
+            }
+            
+            .geometric-prism {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .footer-nav {
+                gap: 1rem;
+                height: 18vh;
+                min-height: 90px;
+                padding-bottom: 1rem;
+            }
+            
+            .footer-link {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.8rem;
+            }
+
+            /* Hide some space elements on very small screens */
+            .asteroid-belt,
+            .satellite {
+                display: none;
+            }
+            
+            .space-station {
+                display: none;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .main-content {
+                padding: 2rem 0;
+            }
+            
+            .prism-container {
+                margin-bottom: 1.5rem;
+            }
+            
+            .footer-nav {
+                height: 15vh;
+                min-height: 80px;
+                padding-bottom: 1rem;
+            }
+            
+            .geometric-prism {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        /* Landscape mobile optimization */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .prism-title {
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .subtitle {
+                font-size: 0.7rem;
+            }
+            
+            .geometric-prism {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .prism-container {
+                margin-bottom: 1rem;
+            }
+            
+            .footer-nav {
+                height: 12vh;
+                min-height: 60px;
+                padding-bottom: 0.5rem;
+                gap: 0.8rem;
+            }
+            
+            .footer-link {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.6rem;
             }
         }
     </style>
