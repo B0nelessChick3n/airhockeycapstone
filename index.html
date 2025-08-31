@@ -13,7 +13,7 @@
 
         body {
             background: #000;
-            overflow: hidden;
+            overflow-x: hidden;
             font-family: 'Courier New', monospace;
             cursor: none;
         }
@@ -21,7 +21,7 @@
         .space-container {
             position: fixed;
             width: 100vw;
-            height: 100vh;
+            height: 200vh;
             background: 
                 radial-gradient(ellipse at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 20%, rgba(255, 119, 198, 0.2) 0%, transparent 50%),
@@ -55,6 +55,7 @@
             border-radius: 60%;
             animation: galaxyRotate 60s linear infinite;
             filter: blur(1px);
+            transition: transform 0.3s ease-out;
         }
 
         .main-content {
@@ -65,6 +66,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            transition: transform 0.5s ease-out;
         }
 
         .prism-container {
@@ -73,6 +75,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: opacity 0.5s ease-out;
         }
 
         .geometric-prism {
@@ -80,7 +83,6 @@
             height: 200px;
             position: relative;
             transform-style: preserve-3d;
-            animation: floatRotate 20s linear infinite;
         }
 
         .prism-crystal {
@@ -119,12 +121,12 @@
             right: 15%;
             width: 150px;
             height: 150px;
+            transition: transform 0.3s ease-out;
         }
 
         .planet {
             position: absolute;
             border-radius: 50%;
-            animation: planetRotate 30s linear infinite;
         }
 
         .planet-main {
@@ -140,20 +142,20 @@
             box-shadow: 
                 inset -10px -10px 20px rgba(0, 0, 0, 0.3),
                 0 0 30px rgba(74, 144, 226, 0.4);
+            animation: planetRotate 30s linear infinite;
         }
 
         .planet-moon {
             width: 20px;
             height: 20px;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
             background: radial-gradient(circle at 40% 40%, 
                 #e8e8e8 0%, 
                 #a0a0a0 60%, 
                 #707070 100%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
             animation: moonOrbit 8s linear infinite;
-            transform-origin: 40px 50px;
         }
 
         .asteroid-belt {
@@ -162,6 +164,7 @@
             left: 10%;
             width: 200px;
             height: 50px;
+            transition: transform 0.3s ease-out;
         }
 
         .asteroid {
@@ -182,6 +185,7 @@
             background: linear-gradient(90deg, #2c3e50, #34495e, #2c3e50);
             border-radius: 10px;
             animation: stationFloat 12s ease-in-out infinite;
+            transition: transform 0.3s ease-out;
         }
 
         .station-solar {
@@ -314,6 +318,7 @@
             border-radius: 3px;
             animation: satelliteOrbit 25s linear infinite;
             transform-origin: -100px -50px;
+            transition: transform 0.3s ease-out;
         }
 
         .satellite::before {
@@ -350,6 +355,54 @@
             transition: transform 0.1s ease;
         }
 
+        /* Second section */
+        .second-section {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            margin-top: -25vh;
+        }
+
+        .options-container {
+            display: flex;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .option-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(100, 200, 255, 0.05) 50%,
+                rgba(200, 100, 255, 0.05) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            min-width: 200px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(100, 200, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(100, 200, 255, 0.2);
+        }
+
+        .option-title {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
+        }
+
         @keyframes gentleTwinkle {
             0%, 100% { opacity: 0.4; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.1); }
@@ -358,14 +411,6 @@
         @keyframes galaxyRotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-
-        @keyframes floatRotate {
-            0% { transform: translateY(0px) rotateZ(0deg); }
-            25% { transform: translateY(-10px) rotateZ(90deg); }
-            50% { transform: translateY(0px) rotateZ(180deg); }
-            75% { transform: translateY(-10px) rotateZ(270deg); }
-            100% { transform: translateY(0px) rotateZ(360deg); }
         }
 
         @keyframes crystalGlow {
@@ -392,8 +437,12 @@
         }
 
         @keyframes moonOrbit {
-            0% { transform: translateX(-50%) rotate(0deg) translateY(-40px) rotate(0deg); }
-            100% { transform: translateX(-50%) rotate(360deg) translateY(-40px) rotate(-360deg); }
+            0% { 
+                transform: translate(-50%, -50%) rotate(0deg) translateX(60px) rotate(0deg);
+            }
+            100% { 
+                transform: translate(-50%, -50%) rotate(360deg) translateX(60px) rotate(-360deg);
+            }
         }
 
         @keyframes asteroidDrift {
@@ -476,15 +525,6 @@
             }
         }
 
-        @keyframes orbitSlow {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .interactive-zone:hover .geometric-prism {
-            animation-duration: 5s;
-        }
-
         .interactive-zone:hover .prism-title {
             transform: scale(1.05);
             transition: transform 0.5s ease;
@@ -502,13 +542,12 @@
                 width: 150px;
                 height: 150px;
             }
-            .light-source {
-                width: 150px;
-                left: -180px;
+            .options-container {
+                flex-direction: column;
+                gap: 2rem;
             }
-            .spectrum-output {
-                width: 180px;
-                right: -200px;
+            .option-card {
+                min-width: 250px;
             }
         }
     </style>
@@ -550,26 +589,37 @@
         <p class="subtitle">PROXIMITY & RENDEZVOUS INTEGRATED SIMULATION MODEL</p>
     </div>
 
+    <div class="second-section">
+        <div class="options-container">
+            <div class="option-card">
+                <div class="option-title">CONTACT US</div>
+            </div>
+            <div class="option-card">
+                <div class="option-title">DONATE</div>
+            </div>
+            <div class="option-card">
+                <div class="option-title">SOCIAL MEDIA</div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Create realistic star field
         function createStars() {
             const starsContainer = document.querySelector('.stars');
-            const starCount = 80; // Reduced for more realistic space
+            const starCount = 80;
             
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 
-                // More realistic star sizes - mostly small
                 const size = Math.random() > 0.9 ? Math.random() * 2 + 2 : Math.random() * 1.5 + 0.5;
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
                 
-                // Avoid clustering at the top
                 let x = Math.random() * 100;
                 let y = Math.random() * 100;
                 
-                // Reduce density in top 20% of screen
                 if (y < 20 && Math.random() < 0.7) {
                     y = 20 + Math.random() * 80;
                 }
@@ -589,12 +639,11 @@
             const nodeCount = 12;
             const nodes = [];
             
-            // Create nodes
             for (let i = 0; i < nodeCount; i++) {
                 const node = document.createElement('div');
                 node.className = 'network-node';
                 
-                const x = Math.random() * 90 + 5; // 5-95%
+                const x = Math.random() * 90 + 5;
                 const y = Math.random() * 90 + 5;
                 
                 node.style.left = x + '%';
@@ -605,7 +654,6 @@
                 nodes.push({ element: node, x, y });
             }
             
-            // Create connections between nearby nodes
             for (let i = 0; i < nodes.length; i++) {
                 for (let j = i + 1; j < nodes.length; j++) {
                     const node1 = nodes[i];
@@ -616,13 +664,11 @@
                         Math.pow(node1.y - node2.y, 2)
                     );
                     
-                    // Only connect nearby nodes
                     if (distance < 30) {
                         const connection = document.createElement('div');
                         connection.className = 'network-connection';
                         
                         const angle = Math.atan2(node2.y - node1.y, node2.x - node1.x);
-                        const length = distance * (window.innerWidth / 100); // Convert % to px approximately
                         
                         connection.style.left = node1.x + '%';
                         connection.style.top = node1.y + '%';
@@ -654,10 +700,10 @@
             }
         }
 
-        // Create subtle space particles
+        // Create space particles
         function createSpaceParticles() {
             const particlesContainer = document.querySelector('.space-particles');
-            const particleCount = 25; // Fewer particles
+            const particleCount = 25;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -678,19 +724,54 @@
             cursor.style.top = e.clientY - 8 + 'px';
         });
 
+        // Smooth prism interaction
+        const prism = document.querySelector('.geometric-prism');
+        const prismContainer = document.querySelector('.prism-container');
+        let isHoveringPrism = false;
+        let currentRotation = 0;
+        let animationId;
+
+        function updatePrismRotation() {
+            const targetSpeed = isHoveringPrism ? 3 : 20; // Fast when hovering, slow when not
+            const rotationSpeed = 360 / (targetSpeed * 60); // degrees per frame at 60fps
+            
+            currentRotation += rotationSpeed;
+            if (currentRotation >= 360) currentRotation -= 360;
+            
+            const floatY = Math.sin(Date.now() * 0.001) * 10;
+            prism.style.transform = `translateY(${floatY}px) rotateZ(${currentRotation}deg)`;
+            
+            animationId = requestAnimationFrame(updatePrismRotation);
+        }
+
+        prismContainer.addEventListener('mouseenter', () => {
+            isHoveringPrism = true;
+        });
+
+        prismContainer.addEventListener('mouseleave', () => {
+            isHoveringPrism = false;
+        });
+
+        // Start smooth rotation (disable CSS animation)
+        prism.style.animation = 'none';
+        updatePrismRotation();
+
         // Subtle mouse interaction with prism
         document.addEventListener('mousemove', (e) => {
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2;
             
-            const deltaX = (e.clientX - centerX) / centerX * 10; // Reduced sensitivity
+            const deltaX = (e.clientX - centerX) / centerX * 10;
             const deltaY = (e.clientY - centerY) / centerY * 5;
             
-            const prism = document.querySelector('.geometric-prism');
-            prism.style.transform = `translateY(${-deltaY}px) rotateZ(${deltaX}deg)`;
+            // Only apply mouse movement when not hovering (to not interfere with smooth rotation)
+            if (!isHoveringPrism) {
+                const floatY = Math.sin(Date.now() * 0.001) * 10;
+                prism.style.transform = `translateY(${floatY - deltaY}px) rotateZ(${currentRotation + deltaX}deg)`;
+            }
         });
 
-        // Initialize
+        // Initialize all effects
         createStars();
         createNeuralNetwork();
         createAsteroidBelt();
@@ -704,6 +785,37 @@
             const intensity = Math.sin(quantumPhase) * 0.3 + 0.7;
             quantumField.style.opacity = intensity * 0.8;
         }, 100);
+
+        // Scroll handling
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            const scrollProgress = Math.min(scrollY / windowHeight, 1);
+            
+            // Main content moves up faster
+            const mainContent = document.querySelector('.main-content');
+            mainContent.style.transform = `translateY(-${scrollProgress * 120}vh)`;
+            
+            // Prism fades out
+            const prismContainer = document.querySelector('.prism-container');
+            prismContainer.style.opacity = Math.max(1 - scrollProgress * 2, 0);
+            
+            // Space objects move up but less than text
+            const planetSystem = document.querySelector('.planet-system');
+            const spaceStation = document.querySelector('.space-station');
+            const satellite = document.querySelector('.satellite');
+            const asteroidBelt = document.querySelector('.asteroid-belt');
+            const distantGalaxy = document.querySelector('.distant-galaxy');
+            
+            const spaceObjectOffset = scrollProgress * 50;
+            
+            planetSystem.style.transform = `translateY(-${spaceObjectOffset}vh)`;
+            spaceStation.style.transform = `translateY(-${spaceObjectOffset}vh)`;
+            satellite.style.transform = `translateY(-${spaceObjectOffset}vh)`;
+            asteroidBelt.style.transform = `translateY(-${spaceObjectOffset}vh)`;
+            distantGalaxy.style.transform = `translateY(-${spaceObjectOffset}vh)`;
+        });
     </script>
 </body>
 </html>
