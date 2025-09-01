@@ -741,24 +741,47 @@
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Get form data
+            const firstName = this.querySelector('input[placeholder*="first name"]').value;
+            const lastName = this.querySelector('input[placeholder*="last name"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const organization = this.querySelector('input[placeholder*="organization"]').value;
+            const subject = this.querySelector('.form-select').value;
+            const message = this.querySelector('.form-textarea').value;
+            
+            // Create email content
+            const emailSubject = `PRISM Contact: ${subject || 'General Inquiry'}`;
+            const emailBody = `From: ${firstName} ${lastName}
+Email: ${email}
+Organization: ${organization || 'Not specified'}
+Subject: ${subject || 'General Inquiry'}
+
+Message:
+${message}`;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:CODERR2@my.erau.edu?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
             // Add visual feedback
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
             
-            submitBtn.textContent = 'Transmitting...';
+            submitBtn.textContent = 'Opening Email...';
             submitBtn.style.transform = 'translateY(-2px) scale(0.98)';
             
+            // Open email client
+            window.location.href = mailtoLink;
+            
             setTimeout(() => {
-                submitBtn.textContent = 'Message Sent ✓';
+                submitBtn.textContent = 'Email Opened ✓';
                 submitBtn.style.background = 'linear-gradient(135deg, rgba(76, 175, 80, 0.4), rgba(139, 195, 74, 0.4))';
                 
                 setTimeout(() => {
                     submitBtn.textContent = originalText;
                     submitBtn.style.transform = '';
                     submitBtn.style.background = '';
-                    this.reset();
                 }, 2000);
-            }, 1500);
+            }, 500);
         });
 
         // Enhanced form interactions
