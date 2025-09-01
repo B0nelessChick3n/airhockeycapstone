@@ -46,8 +46,6 @@
             animation: gentleTwinkle 4s infinite ease-in-out;
         }
 
-        /* Remove all shooting star and meteor related styles */
-
         .purple-nebula {
             position: absolute;
             width: 500px;
@@ -602,11 +600,11 @@
         }
 
         .modern-satellite .satellite-solar-array:first-of-type {
-            left: -40px;
+            left: -35px;
         }
 
         .modern-satellite .satellite-solar-array:last-of-type {
-            right: -40px;
+            right: -35px;
         }
 
         .satellite-antenna {
@@ -673,11 +671,11 @@
         }
 
         .modern-satellite-2 .satellite-wing:first-of-type {
-            left: -30px;
+            left: -25px;
         }
 
         .modern-satellite-2 .satellite-wing:last-of-type {
-            right: -30px;
+            right: -25px;
         }
 
         .satellite-sensor {
@@ -724,33 +722,6 @@
                 transparent 70%);
             border-radius: 50%;
             animation: wormholeSpin 4s linear infinite reverse;
-        }
-
-        .comet {
-            position: absolute;
-            top: 15%;
-            left: -100px;
-            width: 8px;
-            height: 8px;
-            background: #ffffff;
-            border-radius: 50%;
-            animation: cometFly 12s linear infinite;
-        }
-
-        .comet::after {
-            content: '';
-            position: absolute;
-            width: 150px;
-            height: 3px;
-            background: linear-gradient(90deg,
-                #ffffff 0%,
-                rgba(255, 255, 255, 0.8) 20%,
-                rgba(100, 200, 255, 0.6) 50%,
-                transparent 100%);
-            top: 50%;
-            right: 8px;
-            transform: translateY(-50%);
-            border-radius: 2px;
         }
 
         .space-debris {
@@ -926,29 +897,6 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        @keyframes meteorFall {
-            /* Removed - no more meteors */
-        }
-
-        @keyframes shootingStar {
-            0% { 
-                opacity: 0;
-                transform: rotate(45deg) translateX(0) scale(0);
-            }
-            10% {
-                opacity: 1;
-                transform: rotate(45deg) translateX(0) scale(1);
-            }
-            90% {
-                opacity: 1;
-                transform: rotate(45deg) translateX(600px) scale(1);
-            }
-            100% { 
-                opacity: 0;
-                transform: rotate(45deg) translateX(700px) scale(0.8);
-            }
-        }
-
         @keyframes nebulaFloat {
             0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
             33% { transform: translateY(-30px) rotate(3deg) scale(1.08); }
@@ -1071,23 +1019,6 @@
             0% { transform: rotate(0deg) scale(1); }
             50% { transform: rotate(180deg) scale(1.1); }
             100% { transform: rotate(360deg) scale(1); }
-        }
-
-        @keyframes cometFly {
-            0% { 
-                transform: translateX(0) translateY(0) rotate(45deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% { 
-                transform: translateX(120vw) translateY(60vh) rotate(45deg);
-                opacity: 0;
-            }
         }
 
         @keyframes debrisFloat {
@@ -1218,7 +1149,6 @@
             /* Hide complex elements on very small screens */
             .asteroid-field,
             .space-probe,
-            .comet,
             .galaxy-spiral {
                 display: none;
             }
@@ -1249,7 +1179,6 @@
     <div class="gas-giant"></div>
     <div class="pulsar"></div>
     <div class="wormhole"></div>
-    <div class="comet"></div>
 
     <div class="asteroid-field">
         <div class="asteroid asteroid-1"></div>
@@ -1374,17 +1303,6 @@
             }
         }
 
-        // Create meteors that fall vertically like real meteors
-        function createMeteorShower() {
-            // Completely removed - no more meteors
-        }
-
-        // Create shooting stars
-        function createShootingStars() {
-            // Remove the old broken shooting star system
-            // We'll use the new meteor shower instead
-        }
-
         // Create cosmic dust particles
         function createCosmicDust() {
             const spaceContainer = document.querySelector('.space-container');
@@ -1406,29 +1324,13 @@
             }
         }
 
-        // Enhanced custom cursor with trail effect
+        // Enhanced custom cursor with direct positioning
         const cursor = document.querySelector('.custom-cursor');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
         
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
-
-        // Smooth cursor follow
-        function animateCursor() {
-            const dx = mouseX - cursorX;
-            const dy = mouseY - cursorY;
-            
-            cursorX += dx * 0.1;
-            cursorY += dy * 0.1;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
-            requestAnimationFrame(animateCursor);
-        }
 
         // Cursor hover effects
         document.addEventListener('mouseenter', (e) => {
@@ -1515,7 +1417,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             createStars();
             createCosmicDust();
-            animateCursor();
             addPeriodicEffects();
         });
 
