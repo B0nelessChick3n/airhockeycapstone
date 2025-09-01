@@ -47,10 +47,27 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background: #ffffff;
+            background: radial-gradient(circle, #ffffff 0%, #e3f2fd 50%, transparent 100%);
             border-radius: 50%;
-            animation: shootingStar 3s linear infinite;
             opacity: 0;
+            animation: shootingStar 2s ease-out;
+            box-shadow: 0 0 8px #ffffff;
+        }
+
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 255, 255, 0.3) 30%,
+                rgba(255, 255, 255, 0.8) 70%,
+                rgba(255, 255, 255, 1) 100%);
+            top: 50%;
+            left: 2px;
+            transform: translateY(-50%);
+            border-radius: 1px;
         }
 
         .shooting-star::after {
@@ -58,9 +75,13 @@
             position: absolute;
             width: 80px;
             height: 1px;
-            background: linear-gradient(90deg, #ffffff 0%, transparent 100%);
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 255, 255, 0.2) 40%,
+                rgba(255, 255, 255, 0.6) 80%,
+                rgba(255, 255, 255, 0.9) 100%);
             top: 50%;
-            left: -80px;
+            left: 2px;
             transform: translateY(-50%);
         }
 
@@ -723,27 +744,17 @@
 
         .custom-cursor {
             position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.8) 0%, rgba(50, 205, 50, 0.4) 50%, transparent 70%);
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffffff 30%, rgba(138, 43, 226, 0.8) 60%, transparent 100%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
             mix-blend-mode: screen;
-            transition: transform 0.1s ease;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
-        }
-
-        .custom-cursor::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 4px;
-            background: #ffffff;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease;
+            box-shadow: 
+                0 0 10px rgba(138, 43, 226, 0.6),
+                0 0 20px rgba(138, 43, 226, 0.3);
         }
 
         /* Particle effects */
@@ -765,17 +776,19 @@
         @keyframes shootingStar {
             0% { 
                 opacity: 0;
-                transform: translateX(0) translateY(0);
+                transform: rotate(45deg) translateX(0) scale(0);
             }
             10% {
                 opacity: 1;
+                transform: rotate(45deg) translateX(0) scale(1);
             }
             90% {
                 opacity: 1;
+                transform: rotate(45deg) translateX(600px) scale(1);
             }
             100% { 
                 opacity: 0;
-                transform: translateX(300px) translateY(150px);
+                transform: rotate(45deg) translateX(700px) scale(0.8);
             }
         }
 
@@ -1125,19 +1138,20 @@
         // Create shooting stars
         function createShootingStars() {
             const starsContainer = document.querySelector('.stars');
-            const shootingStarCount = 3;
+            const shootingStarCount = 2;
             
             for (let i = 0; i < shootingStarCount; i++) {
                 const shootingStar = document.createElement('div');
                 shootingStar.className = 'shooting-star';
                 
-                const startX = Math.random() * 50;
-                const startY = Math.random() * 50;
+                // Start from random positions in the upper portion of screen
+                const startX = Math.random() * 30; // Start from left side
+                const startY = Math.random() * 30; // Start from top
                 
                 shootingStar.style.left = startX + '%';
                 shootingStar.style.top = startY + '%';
-                shootingStar.style.animationDelay = Math.random() * 8 + 's';
-                shootingStar.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+                shootingStar.style.animationDelay = (Math.random() * 10 + 2) + 's';
+                shootingStar.style.animationDuration = (Math.random() * 1.5 + 2) + 's';
                 
                 starsContainer.appendChild(shootingStar);
             }
