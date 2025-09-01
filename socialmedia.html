@@ -27,7 +27,10 @@
                 radial-gradient(ellipse at 20% 80%, rgba(255, 100, 140, 0.25) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 20%, rgba(140, 255, 100, 0.15) 0%, transparent 50%),
                 radial-gradient(ellipse at 60% 60%, rgba(100, 140, 255, 0.2) 0%, transparent 50%),
-                linear-gradient(to bottom, #0f0a1c 0%, #3a1f1a 30%, #1a3f5a 70%, #5a3f2a 100%);
+                radial-gradient(ellipse at 30% 10%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 90%, rgba(255, 20, 147, 0.15) 0%, transparent 35%),
+                radial-gradient(ellipse at 10% 50%, rgba(0, 255, 255, 0.08) 0%, transparent 45%),
+                linear-gradient(135deg, #0a0a0f 0%, #1a0d2e 20%, #2d1b4e 40%, #1a2f5a 60%, #0f1a3a 80%, #050510 100%);
         }
 
         .stars {
@@ -43,64 +46,7 @@
             animation: gentleTwinkle 4s infinite ease-in-out;
         }
 
-        .shooting-star {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #ffffff;
-            border-radius: 50%;
-            opacity: 0;
-            box-shadow: 0 0 4px #ffffff;
-        }
-
-        .shooting-star::before {
-            content: '';
-            position: absolute;
-            width: 1px;
-            height: 150px;
-            background: linear-gradient(to bottom, 
-                #ffffff 0%,
-                rgba(255, 255, 255, 0.8) 20%,
-                rgba(255, 255, 255, 0.4) 60%,
-                transparent 100%);
-            top: 4px;
-            left: 50%;
-            transform: translateX(-50%);
-            transform-origin: top;
-        }
-
-        .meteor-shower {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .meteor {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #ffffff;
-            border-radius: 50%;
-            opacity: 0;
-        }
-
-        .meteor::before {
-            content: '';
-            position: absolute;
-            width: 1px;
-            height: 80px;
-            background: linear-gradient(to top, 
-                transparent 0%,
-                rgba(255, 255, 255, 0.3) 30%,
-                rgba(255, 255, 255, 0.8) 80%,
-                #ffffff 100%);
-            bottom: 2px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+        /* Remove all shooting star and meteor related styles */
 
         .purple-nebula {
             position: absolute;
@@ -134,20 +80,57 @@
             filter: blur(2px);
         }
 
-        .blue-nebula {
+        .red-nebula {
             position: absolute;
-            width: 400px;
-            height: 250px;
-            top: 40%;
-            left: 5%;
+            width: 300px;
+            height: 180px;
+            top: 70%;
+            right: 35%;
             background: radial-gradient(ellipse, 
-                rgba(0, 191, 255, 0.3) 0%,
-                rgba(30, 144, 255, 0.2) 40%,
-                rgba(65, 105, 225, 0.1) 70%,
+                rgba(255, 69, 0, 0.3) 0%,
+                rgba(255, 20, 147, 0.2) 40%,
+                rgba(139, 0, 139, 0.1) 70%,
                 transparent 90%);
-            border-radius: 70%;
-            animation: nebulaFloat 55s ease-in-out infinite;
-            filter: blur(2.5px);
+            border-radius: 65%;
+            animation: nebulaFloat 40s ease-in-out infinite;
+            filter: blur(2px);
+        }
+
+        .distant-galaxy {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(ellipse,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(138, 43, 226, 0.15) 30%,
+                rgba(255, 215, 0, 0.08) 60%,
+                transparent 80%);
+            border-radius: 50%;
+            animation: galaxySpin 80s linear infinite;
+            filter: blur(0.5px);
+        }
+
+        .space-depth-layer-1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.02) 0%, transparent 20%),
+                radial-gradient(circle at 15% 85%, rgba(100, 149, 237, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 60% 30%, rgba(75, 0, 130, 0.04) 0%, transparent 30%);
+            animation: depthLayer1 120s ease-in-out infinite;
+        }
+
+        .space-depth-layer-2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 70%, rgba(220, 20, 60, 0.02) 0%, transparent 35%),
+                radial-gradient(circle at 75% 25%, rgba(0, 191, 255, 0.025) 0%, transparent 40%);
+            animation: depthLayer2 150s ease-in-out infinite reverse;
         }
 
         .galaxy-spiral {
@@ -544,56 +527,170 @@
             animation-delay: -12s;
         }
 
-        .satellite-2 {
+        .modern-satellite {
             position: absolute;
-            top: 30%;
-            right: 30%;
+            top: 40%;
+            left: 25%;
+            width: 60px;
+            height: 40px;
+            animation: satelliteFloat 35s ease-in-out infinite;
+        }
+
+        .satellite-body {
+            position: absolute;
             width: 40px;
-            height: 30px;
-            background: linear-gradient(45deg, #2c3e50, #34495e, #5d6d7e);
-            border-radius: 5px;
-            animation: satelliteOrbit2 28s linear infinite;
-            box-shadow: 0 0 12px rgba(44, 62, 80, 0.6);
+            height: 25px;
+            background: linear-gradient(135deg, 
+                #34495e 0%, 
+                #5d6d7e 30%, 
+                #85929e 60%, 
+                #aeb6bf 90%);
+            border-radius: 8px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                0 0 15px rgba(52, 73, 94, 0.4),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.1),
+                inset -2px -2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        .satellite-2::before {
+        .satellite-body::before {
             content: '';
             position: absolute;
-            width: 20px;
+            width: 30px;
+            height: 15px;
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            border-radius: 4px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .satellite-solar-array {
+            position: absolute;
+            width: 35px;
+            height: 20px;
+            background: linear-gradient(135deg, 
+                #2980b9 0%, 
+                #3498db 25%, 
+                #5dade2 50%, 
+                #85c1e9 75%, 
+                #aed6f1 100%);
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid rgba(41, 128, 185, 0.6);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .satellite-solar-array::before {
+            content: '';
+            position: absolute;
+            width: 100%;
             height: 1px;
-            background: #95a5a6;
-            top: -8px;
-            left: 10px;
+            background: rgba(21, 101, 192, 0.4);
+            top: 33%;
         }
 
-        .satellite-2::after {
+        .satellite-solar-array::after {
             content: '';
             position: absolute;
-            width: 12px;
-            height: 12px;
-            background: radial-gradient(circle, #3498db, #2980b9);
-            border-radius: 50%;
-            top: -12px;
-            right: -6px;
-            box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+            width: 100%;
+            height: 1px;
+            background: rgba(21, 101, 192, 0.4);
+            top: 66%;
         }
 
-        .satellite-2-panel {
+        .modern-satellite .satellite-solar-array:first-of-type {
+            left: -40px;
+        }
+
+        .modern-satellite .satellite-solar-array:last-of-type {
+            right: -40px;
+        }
+
+        .satellite-antenna {
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background: linear-gradient(to top, #95a5a6, #ecf0f1);
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .satellite-dish {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #e74c3c 0%, #c0392b 70%);
+            border-radius: 50%;
+            top: -25px;
+            right: -5px;
+            box-shadow: 0 0 8px rgba(231, 76, 60, 0.5);
+        }
+
+        .modern-satellite-2 {
+            position: absolute;
+            top: 65%;
+            right: 20%;
+            width: 50px;
+            height: 35px;
+            animation: satelliteFloat2 42s ease-in-out infinite;
+        }
+
+        .satellite-body-2 {
+            position: absolute;
+            width: 35px;
+            height: 20px;
+            background: linear-gradient(135deg, 
+                #2c3e50 0%, 
+                #34495e 40%, 
+                #5d6d7e 80%, 
+                #85929e 100%);
+            border-radius: 6px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                0 0 12px rgba(44, 62, 80, 0.4),
+                inset 1px 1px 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .satellite-wing {
             position: absolute;
             width: 25px;
             height: 15px;
-            background: linear-gradient(135deg, #2980b9, #3498db, #5dade2);
+            background: linear-gradient(135deg, 
+                #1565c0 0%, 
+                #1976d2 30%, 
+                #1e88e5 60%, 
+                #42a5f5 100%);
             top: 50%;
             transform: translateY(-50%);
-            box-shadow: 0 0 8px rgba(41, 128, 185, 0.4);
+            border: 1px solid rgba(21, 101, 192, 0.5);
+            box-shadow: 0 0 8px rgba(30, 136, 229, 0.3);
         }
 
-        .satellite-2 .satellite-2-panel:first-of-type {
+        .modern-satellite-2 .satellite-wing:first-of-type {
             left: -30px;
         }
 
-        .satellite-2 .satellite-2-panel:last-of-type {
+        .modern-satellite-2 .satellite-wing:last-of-type {
             right: -30px;
+        }
+
+        .satellite-sensor {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #00e676 0%, #4caf50 70%);
+            border-radius: 50%;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 6px rgba(0, 230, 118, 0.6);
+            animation: sensorBlink 3s ease-in-out infinite;
         }
 
         .wormhole {
@@ -741,35 +838,61 @@
 
         .satellite {
             position: absolute;
-            top: 50%;
-            left: 15%;
-            width: 35px;
-            height: 25px;
-            background: linear-gradient(45deg, #263238, #37474f, #455a64);
+            top: 20%;
+            right: 40%;
+            width: 45px;
+            height: 30px;
+            animation: satelliteOrbit 30s linear infinite;
+        }
+
+        .satellite-main-body {
+            position: absolute;
+            width: 30px;
+            height: 18px;
+            background: linear-gradient(135deg, 
+                #37474f 0%, 
+                #546e7a 50%, 
+                #78909c 100%);
             border-radius: 4px;
-            animation: satelliteOrbit 35s linear infinite;
-            box-shadow: 0 0 10px rgba(38, 50, 56, 0.6);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(55, 71, 79, 0.5);
         }
 
-        .satellite::before {
-            content: '';
+        .satellite-panel {
             position: absolute;
-            width: 18px;
-            height: 1px;
-            background: #90a4ae;
-            top: -10px;
-            left: 8px;
+            width: 20px;
+            height: 12px;
+            background: linear-gradient(135deg, 
+                #0d47a1 0%, 
+                #1565c0 30%, 
+                #1976d2 70%, 
+                #2196f3 100%);
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid rgba(13, 71, 161, 0.6);
+            box-shadow: 0 0 6px rgba(25, 118, 210, 0.4);
         }
 
-        .satellite::after {
-            content: '';
+        .satellite .satellite-panel:first-of-type {
+            left: -25px;
+        }
+
+        .satellite .satellite-panel:last-of-type {
+            right: -25px;
+        }
+
+        .satellite-comm {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, #cfd8dc, #90a4ae);
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #ff9800 0%, #f57c00 70%);
             border-radius: 50%;
-            top: -15px;
-            right: -5px;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
         }
 
         .custom-cursor {
@@ -804,20 +927,7 @@
         }
 
         @keyframes meteorFall {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(100vh);
-            }
+            /* Removed - no more meteors */
         }
 
         @keyframes shootingStar {
@@ -890,9 +1000,71 @@
             75% { transform: translateY(-8px) rotate(270deg); }
         }
 
-        @keyframes satelliteOrbit2 {
-            0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        @keyframes satelliteFloat {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg); 
+            }
+            25% { 
+                transform: translateY(-15px) translateX(10px) rotate(2deg); 
+            }
+            50% { 
+                transform: translateY(0px) translateX(20px) rotate(0deg); 
+            }
+            75% { 
+                transform: translateY(15px) translateX(10px) rotate(-2deg); 
+            }
+        }
+
+        @keyframes satelliteFloat2 {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg); 
+            }
+            30% { 
+                transform: translateY(-20px) translateX(-8px) rotate(-3deg); 
+            }
+            60% { 
+                transform: translateY(5px) translateX(-15px) rotate(0deg); 
+            }
+            90% { 
+                transform: translateY(10px) translateX(-5px) rotate(2deg); 
+            }
+        }
+
+        @keyframes sensorBlink {
+            0%, 70% { 
+                opacity: 1; 
+                box-shadow: 0 0 6px rgba(0, 230, 118, 0.6); 
+            }
+            80%, 90% { 
+                opacity: 0.3; 
+                box-shadow: 0 0 2px rgba(0, 230, 118, 0.3); 
+            }
+            100% { 
+                opacity: 1; 
+                box-shadow: 0 0 6px rgba(0, 230, 118, 0.6); 
+            }
+        }
+
+        @keyframes depthLayer1 {
+            0%, 100% { 
+                transform: translateY(0px) scale(1); 
+                opacity: 1; 
+            }
+            50% { 
+                transform: translateY(-10px) scale(1.02); 
+                opacity: 0.8; 
+            }
+        }
+
+        @keyframes depthLayer2 {
+            0%, 100% { 
+                transform: translateY(0px) scale(1); 
+                opacity: 0.7; 
+            }
+            50% { 
+                transform: translateY(8px) scale(0.98); 
+                opacity: 1; 
+            }
         }
 
         @keyframes wormholeSpin {
@@ -1055,14 +1227,15 @@
 </head>
 <body>
     <div class="space-container">
+        <div class="space-depth-layer-1"></div>
+        <div class="space-depth-layer-2"></div>
         <div class="stars"></div>
         <div class="purple-nebula"></div>
         <div class="green-nebula"></div>
-        <div class="blue-nebula"></div>
+        <div class="red-nebula"></div>
         <div class="galaxy-spiral"></div>
+        <div class="distant-galaxy"></div>
     </div>
-
-    <div class="meteor-shower"></div>
 
     <a href="index.html" class="prism-nav">
         <div class="nav-prism">
@@ -1086,9 +1259,29 @@
         <div class="asteroid asteroid-5"></div>
     </div>
 
-    <div class="satellite-2">
-        <div class="satellite-2-panel"></div>
-        <div class="satellite-2-panel"></div>
+    <div class="modern-satellite">
+        <div class="satellite-body">
+            <div class="satellite-antenna"></div>
+            <div class="satellite-dish"></div>
+        </div>
+        <div class="satellite-solar-array"></div>
+        <div class="satellite-solar-array"></div>
+    </div>
+
+    <div class="modern-satellite-2">
+        <div class="satellite-body-2">
+            <div class="satellite-sensor"></div>
+        </div>
+        <div class="satellite-wing"></div>
+        <div class="satellite-wing"></div>
+    </div>
+
+    <div class="satellite">
+        <div class="satellite-main-body">
+            <div class="satellite-comm"></div>
+        </div>
+        <div class="satellite-panel"></div>
+        <div class="satellite-panel"></div>
     </div>
 
     <div class="satellite"></div>
@@ -1183,40 +1376,7 @@
 
         // Create meteors that fall vertically like real meteors
         function createMeteorShower() {
-            const meteorShower = document.querySelector('.meteor-shower');
-            
-            function createMeteor() {
-                const meteor = document.createElement('div');
-                meteor.className = 'meteor';
-                
-                // Random horizontal position
-                const startX = Math.random() * 100;
-                meteor.style.left = startX + '%';
-                meteor.style.top = '-10px';
-                
-                // Random animation duration for variety
-                const duration = Math.random() * 2 + 2; // 2-4 seconds
-                meteor.style.animation = `meteorFall ${duration}s linear`;
-                
-                meteorShower.appendChild(meteor);
-                
-                // Remove meteor after animation
-                setTimeout(() => {
-                    meteor.remove();
-                }, duration * 1000);
-            }
-            
-            // Create meteors at random intervals
-            setInterval(() => {
-                if (Math.random() < 0.3) { // 30% chance every 3 seconds
-                    createMeteor();
-                }
-            }, 3000);
-            
-            // Create initial meteors
-            for (let i = 0; i < 2; i++) {
-                setTimeout(() => createMeteor(), Math.random() * 5000);
-            }
+            // Completely removed - no more meteors
         }
 
         // Create shooting stars
@@ -1354,7 +1514,6 @@
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', () => {
             createStars();
-            createMeteorShower();
             createCosmicDust();
             animateCursor();
             addPeriodicEffects();
