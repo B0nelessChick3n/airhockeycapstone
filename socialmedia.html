@@ -599,11 +599,11 @@
             top: 66%;
         }
 
-        .modern-satellite .satellite-solar-array:first-of-type {
+        .modern-satellite .satellite-solar-array:left {
             left: -25px;
         }
 
-        .modern-satellite .satellite-solar-array:last-of-type {
+        .modern-satellite .satellite-solar-array:right {
             right: -25px;
         }
 
@@ -624,7 +624,8 @@
             background: radial-gradient(circle, #e74c3c 0%, #c0392b 70%);
             border-radius: 50%;
             top: -25px;
-            right: -5px;
+            left: 50%;             /* instead of right:-5px */
+            transform: translateX(-50%);
             box-shadow: 0 0 8px rgba(231, 76, 60, 0.5);
         }
 
@@ -670,11 +671,11 @@
             box-shadow: 0 0 8px rgba(30, 136, 229, 0.3);
         }
 
-        .modern-satellite-2 .satellite-wing:first-of-type {
+        .modern-satellite-2 .satellite-wing:left {
             left: -25px;
         }
 
-        .modern-satellite-2 .satellite-wing:last-of-type {
+        .modern-satellite-2 .satellite-wing:right {
             right: -25px;
         }
 
@@ -1189,20 +1190,18 @@
     </div>
 
     <div class="modern-satellite">
-        <div class="satellite-body">
-            <div class="satellite-antenna"></div>
-            <div class="satellite-dish"></div>
-        </div>
-        <div class="satellite-solar-array"></div>
-        <div class="satellite-solar-array"></div>
+        <div class="satellite-body"></div>
+        <div class="satellite-solar-array left"></div>
+        <div class="satellite-solar-array right"></div>
+        <div class="satellite-antenna"></div>
+        <div class="satellite-dish"></div>
     </div>
 
     <div class="modern-satellite-2">
-        <div class="satellite-body-2">
-            <div class="satellite-sensor"></div>
-        </div>
-        <div class="satellite-wing"></div>
-        <div class="satellite-wing"></div>
+        <div class="satellite-body-2"></div>
+        <div class="satellite-wing left"></div>
+        <div class="satellite-wing right"></div>
+        <div class="satellite-sensor"></div>
     </div>
 
     <div class="satellite">
