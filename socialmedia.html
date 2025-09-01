@@ -1,127 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Media - PRISM</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            background: #000;
-            overflow-x: hidden;
-            font-family: 'Courier New', monospace;
-            cursor: none;
-            min-height: 100vh;
-        }
-
-        .space-container {
-            position: fixed;
-            width: 100vw;
-            height: 200vh;
-            background: 
-                radial-gradient(ellipse at 20% 80%, rgba(255, 100, 140, 0.25) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(140, 255, 100, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 60%, rgba(100, 140, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(ellipse at 30% 10%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
-                radial-gradient(ellipse at 70% 90%, rgba(255, 20, 147, 0.15) 0%, transparent 35%),
-                radial-gradient(ellipse at 10% 50%, rgba(0, 255, 255, 0.08) 0%, transparent 45%),
-                linear-gradient(135deg, #0a0a0f 0%, #1a0d2e 20%, #2d1b4e 40%, #1a2f5a 60%, #0f1a3a 80%, #050510 100%);
-        }
-
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: gentleTwinkle 4s infinite ease-in-out;
-        }
-
-        .purple-nebula {
-            position: absolute;
-            width: 500px;
-            height: 300px;
-            top: 5%;
-            right: 10%;
-            background: radial-gradient(ellipse, 
-                rgba(138, 43, 226, 0.4) 0%,
-                rgba(75, 0, 130, 0.3) 30%,
-                rgba(148, 0, 211, 0.2) 60%,
-                transparent 80%);
-            border-radius: 60%;
-            animation: nebulaFloat 35s ease-in-out infinite;
-            filter: blur(3px);
-        }
-
-        .green-nebula {
-            position: absolute;
-            width: 350px;
-            height: 200px;
-            bottom: 15%;
-            left: 15%;
-            background: radial-gradient(ellipse, 
-                rgba(50, 205, 50, 0.3) 0%,
-                rgba(34, 139, 34, 0.2) 40%,
-                rgba(0, 128, 0, 0.1) 70%,
-                transparent 90%);
-            border-radius: 80%;
-            animation: nebulaFloat 45s ease-in-out infinite reverse;
-            filter: blur(2px);
-        }
-
-        .red-nebula {
-            position: absolute;
-            width: 300px;
-            height: 180px;
-            top: 70%;
-            right: 35%;
-            background: radial-gradient(ellipse, 
-                rgba(255, 69, 0, 0.3) 0%,
-                rgba(255, 20, 147, 0.2) 40%,
-                rgba(139, 0, 139, 0.1) 70%,
-                transparent 90%);
-            border-radius: 65%;
-            animation: nebulaFloat 40s ease-in-out infinite;
-            filter: blur(2px);
-        }
-
-        .distant-galaxy {
-            position: absolute;
-            top: 5%;
-            right: 5%;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(ellipse,
-                rgba(255, 255, 255, 0.05) 0%,
-                rgba(138, 43, 226, 0.15) 30%,
-                rgba(255, 215, 0, 0.08) 60%,
-                transparent 80%);
-            border-radius: 50%;
-            animation: galaxySpin 80s linear infinite;
-            filter: blur(0.5px);
-        }
-
-        .space-depth-layer-1 {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.02) 0%, transparent 20%),
-                radial-gradient(circle at 15% 85%, rgba(100, 149, 237, 0.03) 0%, transparent 25%),
-                radial-gradient(circle at 60% 30%, rgba(75, 0, 130, 0.04) 0%, transparent 30%);
-            animation: depthLayer1 120s ease-in-out infinite;
-        }
-
-        .space-depth-layer-2 {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -526,7 +403,7 @@
         }
 
         .modern-satellite {
-            position: relative;
+            position: absolute;
             top: 40%;
             left: 25%;
             width: 60px;
@@ -599,12 +476,12 @@
             top: 66%;
         }
 
-        .modern-satellite .satellite-solar-array:left {
-            left: -50px;
+        .modern-satellite .satellite-solar-array:first-of-type {
+            left: -25px;
         }
 
-        .modern-satellite .satellite-solar-array:right {
-            right: -50px;
+        .modern-satellite .satellite-solar-array:last-of-type {
+            right: -25px;
         }
 
         .satellite-antenna {
@@ -624,13 +501,12 @@
             background: radial-gradient(circle, #e74c3c 0%, #c0392b 70%);
             border-radius: 50%;
             top: -25px;
-            left: 50%;             /* instead of right:-5px */
-            transform: translateX(-50%);
+            right: -5px;
             box-shadow: 0 0 8px rgba(231, 76, 60, 0.5);
         }
 
         .modern-satellite-2 {
-            position: relative;
+            position: absolute;
             top: 65%;
             right: 20%;
             width: 50px;
@@ -671,11 +547,11 @@
             box-shadow: 0 0 8px rgba(30, 136, 229, 0.3);
         }
 
-        .modern-satellite-2 .satellite-wing:left {
-            left: -50px;
+        .modern-satellite-2 .satellite-wing:first-of-type {
+            left: -25px;
         }
 
-        .modern-satellite-2 .satellite-wing:right {
+        .modern-satellite-2 .satellite-wing:last-of-type {
             right: -25px;
         }
 
@@ -1190,18 +1066,20 @@
     </div>
 
     <div class="modern-satellite">
-        <div class="satellite-body"></div>
-        <div class="satellite-solar-array left"></div>
-        <div class="satellite-solar-array right"></div>
-        <div class="satellite-antenna"></div>
-        <div class="satellite-dish"></div>
+        <div class="satellite-body">
+            <div class="satellite-antenna"></div>
+            <div class="satellite-dish"></div>
+        </div>
+        <div class="satellite-solar-array"></div>
+        <div class="satellite-solar-array"></div>
     </div>
 
     <div class="modern-satellite-2">
-        <div class="satellite-body-2"></div>
-        <div class="satellite-wing left"></div>
-        <div class="satellite-wing right"></div>
-        <div class="satellite-sensor"></div>
+        <div class="satellite-body-2">
+            <div class="satellite-sensor"></div>
+        </div>
+        <div class="satellite-wing"></div>
+        <div class="satellite-wing"></div>
     </div>
 
     <div class="satellite">
