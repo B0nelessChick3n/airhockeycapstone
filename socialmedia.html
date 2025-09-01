@@ -380,23 +380,15 @@
         }
 
         /* Specific social media colors */
-        .twitter { --accent: #1da1f2; }
         .instagram { --accent: #e4405f; }
         .linkedin { --accent: #0077b5; }
         .youtube { --accent: #ff0000; }
         .github { --accent: #333333; }
-        .discord { --accent: #7289da; }
-        .tiktok { --accent: #ff0050; }
-        .reddit { --accent: #ff4500; }
 
-        .social-card:hover.twitter { border-color: rgba(29, 161, 242, 0.6); }
         .social-card:hover.instagram { border-color: rgba(228, 64, 95, 0.6); }
         .social-card:hover.linkedin { border-color: rgba(0, 119, 181, 0.6); }
         .social-card:hover.youtube { border-color: rgba(255, 0, 0, 0.6); }
         .social-card:hover.github { border-color: rgba(255, 255, 255, 0.6); }
-        .social-card:hover.discord { border-color: rgba(114, 137, 218, 0.6); }
-        .social-card:hover.tiktok { border-color: rgba(255, 0, 80, 0.6); }
-        .social-card:hover.reddit { border-color: rgba(255, 69, 0, 0.6); }
 
         /* Enhanced space elements */
         .ice-planet {
@@ -1140,11 +1132,6 @@
                 width: 100px;
                 height: 100px;
             }
-            
-            .space-station {
-                width: 70px;
-                height: 35px;
-            }
 
             .wormhole {
                 width: 60px;
@@ -1176,3 +1163,272 @@
                 display: none;
             }
         }
+    </style>
+</head>
+<body>
+    <div class="space-container">
+        <div class="space-depth-layer-1"></div>
+        <div class="space-depth-layer-2"></div>
+        <div class="stars"></div>
+        <div class="purple-nebula"></div>
+        <div class="green-nebula"></div>
+        <div class="red-nebula"></div>
+        <div class="galaxy-spiral"></div>
+        <div class="distant-galaxy"></div>
+    </div>
+
+    <a href="index.html" class="prism-nav">
+        <div class="nav-prism">
+            <div class="nav-prism-crystal"></div>
+        </div>
+        <div class="nav-label">HOME</div>
+    </a>
+
+    <div class="ice-planet"></div>
+    <div class="desert-planet"></div>
+    <div class="gas-giant"></div>
+    <div class="pulsar"></div>
+    <div class="wormhole"></div>
+
+    <div class="asteroid-field">
+        <div class="asteroid asteroid-1"></div>
+        <div class="asteroid asteroid-2"></div>
+        <div class="asteroid asteroid-3"></div>
+        <div class="asteroid asteroid-4"></div>
+        <div class="asteroid asteroid-5"></div>
+    </div>
+
+    <div class="modern-satellite">
+        <div class="satellite-body">
+            <div class="satellite-antenna"></div>
+            <div class="satellite-dish"></div>
+        </div>
+        <div class="satellite-solar-array"></div>
+        <div class="satellite-solar-array"></div>
+    </div>
+
+    <div class="modern-satellite-2">
+        <div class="satellite-body-2">
+            <div class="satellite-sensor"></div>
+        </div>
+        <div class="satellite-wing"></div>
+        <div class="satellite-wing"></div>
+    </div>
+
+    <div class="satellite">
+        <div class="satellite-main-body">
+            <div class="satellite-comm"></div>
+        </div>
+        <div class="satellite-panel"></div>
+        <div class="satellite-panel"></div>
+    </div>
+    
+    <div class="space-probe"></div>
+    
+    <div class="space-debris debris-1"></div>
+    <div class="space-debris debris-2"></div>
+    <div class="space-debris debris-3"></div>
+
+    <div class="custom-cursor"></div>
+
+    <div class="main-content">
+        <div class="social-container">
+            <h1 class="social-title">SOCIAL MEDIA</h1>
+            <p class="social-subtitle">Connect with the PRISM team across the digital cosmos. Follow our mission updates, behind-the-scenes content, and space exploration journey.</p>
+            
+            <div class="social-grid">
+                <div class="social-card instagram" onclick="openSocialMedia('instagram')">
+                    <span class="social-icon">📸</span>
+                    <div class="social-name">Instagram</div>
+                    <div class="social-handle">@prism_space_placeholder</div>
+                    <div class="social-description">Visual journey of our satellite development, team moments, and stunning space imagery.</div>
+                    <div class="social-followers">1 Follower</div>
+                </div>
+
+                <div class="social-card linkedin" onclick="openSocialMedia('linkedin')">
+                    <span class="social-icon">💼</span>
+                    <div class="social-name">LinkedIn</div>
+                    <div class="social-handle">PRISM Capstone Team</div>
+                    <div class="social-description">Professional updates, research publications, and aerospace industry connections.</div>
+                    <div class="social-followers">1 Connection</div>
+                </div>
+
+                <div class="social-card youtube" onclick="openSocialMedia('youtube')">
+                    <span class="social-icon">▶️</span>
+                    <div class="social-name">YouTube</div>
+                    <div class="social-handle">PRISM Space Channel</div>
+                    <div class="social-description">Technical demonstrations, mission documentaries, and educational space content.</div>
+                    <div class="social-followers">1 Subscriber</div>
+                </div>
+
+                <div class="social-card github" onclick="openSocialMedia('github')">
+                    <span class="social-icon">🔧</span>
+                    <div class="social-name">GitHub</div>
+                    <div class="social-handle">PRISM-Team-placeholder</div>
+                    <div class="social-description">Open-source satellite software, mission planning tools, and technical documentation.</div>
+                    <div class="social-followers">1 Repository</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create realistic star field with different colors and sizes
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const starCount = 200;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() > 0.85 ? Math.random() * 3 + 2.5 : Math.random() * 1.8 + 0.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Different star colors with realistic distribution
+                const starType = Math.random();
+                if (starType < 0.6) {
+                    star.style.background = '#ffffff';
+                } else if (starType < 0.75) {
+                    star.style.background = '#ffd54f';
+                } else if (starType < 0.85) {
+                    star.style.background = '#ff8a65';
+                } else if (starType < 0.92) {
+                    star.style.background = '#81c784';
+                } else {
+                    star.style.background = '#9575cd';
+                }
+                
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                star.style.left = x + '%';
+                star.style.top = y + '%';
+                star.style.animationDelay = Math.random() * 4 + 's';
+                star.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create cosmic dust particles
+        function createCosmicDust() {
+            const spaceContainer = document.querySelector('.space-container');
+            const dustCount = 50;
+            
+            for (let i = 0; i < dustCount; i++) {
+                const dust = document.createElement('div');
+                dust.className = 'cosmic-dust';
+                
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                dust.style.left = x + '%';
+                dust.style.top = y + '%';
+                dust.style.animationDelay = Math.random() * 25 + 's';
+                dust.style.animationDuration = (Math.random() * 15 + 20) + 's';
+                
+                spaceContainer.appendChild(dust);
+            }
+        }
+
+        // Enhanced custom cursor with direct positioning
+        const cursor = document.querySelector('.custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Cursor hover effects
+        document.addEventListener('mouseenter', (e) => {
+            if (e.target.classList.contains('social-card') || e.target.classList.contains('prism-nav')) {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.boxShadow = '0 0 25px rgba(138, 43, 226, 0.8)';
+            }
+        });
+
+        document.addEventListener('mouseleave', (e) => {
+            if (e.target.classList.contains('social-card') || e.target.classList.contains('prism-nav')) {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.boxShadow = '0 0 15px rgba(138, 43, 226, 0.6)';
+            }
+        });
+
+        // Social media interaction function
+        function openSocialMedia(platform) {
+            // Add click effect
+            const clickedCard = event.currentTarget;
+            clickedCard.style.transform = 'translateY(-8px) scale(0.98)';
+            
+            setTimeout(() => {
+                clickedCard.style.transform = 'translateY(-8px) scale(1.02)';
+            }, 150);
+
+            // Placeholder for actual social media links
+            console.log(`Opening ${platform} - Link not yet configured`);
+        }
+
+        // Add periodic effects
+        function addPeriodicEffects() {
+            // Randomly add new shooting stars
+            setInterval(() => {
+                if (Math.random() < 0.3) {
+                    const starsContainer = document.querySelector('.stars');
+                    const shootingStar = document.createElement('div');
+                    shootingStar.className = 'shooting-star';
+                    
+                    shootingStar.style.left = Math.random() * 50 + '%';
+                    shootingStar.style.top = Math.random() * 50 + '%';
+                    shootingStar.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+                    
+                    starsContainer.appendChild(shootingStar);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        shootingStar.remove();
+                    }, 4000);
+                }
+            }, 8000);
+
+            // Add cosmic dust periodically
+            setInterval(() => {
+                if (Math.random() < 0.4) {
+                    const spaceContainer = document.querySelector('.space-container');
+                    const dust = document.createElement('div');
+                    dust.className = 'cosmic-dust';
+                    
+                    dust.style.left = Math.random() * 100 + '%';
+                    dust.style.top = Math.random() * 100 + '%';
+                    dust.style.animationDuration = (Math.random() * 15 + 20) + 's';
+                    
+                    spaceContainer.appendChild(dust);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        dust.remove();
+                    }, 35000);
+                }
+            }, 12000);
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            createCosmicDust();
+            addPeriodicEffects();
+        });
+
+        // Performance optimization - pause animations when tab is not visible
+        document.addEventListener('visibilitychange', () => {
+            const spaceContainer = document.querySelector('.space-container');
+            if (document.hidden) {
+                spaceContainer.style.animationPlayState = 'paused';
+            } else {
+                spaceContainer.style.animationPlayState = 'running';
+            }
+        });
+    </script>
+</body>
+</html>
