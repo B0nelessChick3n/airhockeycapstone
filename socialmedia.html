@@ -1,1 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media - PRISM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background: #000;
+            overflow-x: hidden;
+            font-family: 'Courier New', monospace;
+            cursor: none;
+            min-height: 100vh;
+        }
+
+        .space-container {
+            position: fixed;
+            width: 100vw;
+            height: 200vh;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(255, 100, 140, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(140, 255, 100, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 60%, rgba(100, 140, 255, 0.2) 0%, transparent 50%),
+                linear-gradient(to bottom, #0f0a1c 0%, #3a1f1a 30%, #1a3f5a 70%, #5a3f2a 100%);
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: gentleTwinkle 4s infinite ease-in-out;
+        }
+
+        .purple-nebula {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            top: 5%;
+            right: 10%;
+            background: radial-gradient(ellipse, 
+                rgba(138, 43, 226, 0.4) 0%,
+                rgba(75, 0, 130, 0.3) 30%,
+                rgba(148, 0, 211, 0.2) 60%,
+                transparent 80%);
+            border-radius: 60%;
+            animation: nebulaFloat 35s ease-in-out infinite;
+            filter: blur(3px);
+        }
+
+        .green-nebula {
+            position: absolute;
+            width: 350px;
+            height: 200px;
+            bottom: 15%;
+            left: 15%;
+            background: radial-gradient(ellipse, 
+                rgba(50, 205, 50, 0.3) 0%,
+                rgba(34, 139, 34, 0.2) 40%,
+                rgba(0, 128, 0, 0.1) 70%,
+                transparent 90%);
+            border-radius: 80%;
+            animation: nebulaFloat 45s ease-in-out infinite reverse;
+            filter: blur(2px);
+        }
+
+        .prism-nav {
+            position: fixed;
+            top: 3rem;
+            left: 3rem;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .prism-nav:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        .nav-prism {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .nav-prism-crystal {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(100, 200, 255, 0.2) 25%,
+                rgba(200, 100, 255, 0.2) 50%,
+                rgba(255, 200, 100, 0.2) 75%,
+                rgba(255, 255, 255, 0.15) 100%);
+            clip-path: polygon(50% 10%, 90% 30%, 90% 70%, 50% 90%, 10% 70%, 10% 30%);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            animation: navPrismGlow 6s ease-in-out infinite;
+        }
+
+        .nav-label {
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .prism-nav:hover .nav-label {
+            opacity: 1;
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .social-container {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(138, 43, 226, 0.08) 30%,
+                rgba(50, 205, 50, 0.06) 70%,
+                rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 900px;
+            width: 100%;
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .social-title {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 
+                0 0 20px rgba(138, 43, 226, 0.6),
+                0 0 40px rgba(50, 205, 50, 0.4);
+            animation: titleGlow 6s ease-in-out infinite;
+            margin-bottom: 1rem;
+        }
+
+        .social-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-align: center;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            line-height: 1.4;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.03) 0%,
+                rgba(138, 43, 226, 0.08) 50%,
+                rgba(255, 255, 255, 0.03) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.08) 0%,
+                rgba(138, 43, 226, 0.12) 50%,
+                rgba(255, 255, 255, 0.08) 100%);
+            box-shadow: 
+                0 15px 40px rgba(138, 43, 226, 0.2),
+                0 0 50px rgba(50, 205, 50, 0.1);
+            border-color: rgba(138, 43, 226, 0.4);
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .social-card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.1) rotateY(15deg);
+        }
+
+        .social-name {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .social-handle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .social-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-followers {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            display: inline-block;
+        }
+
+        /* Specific social media colors */
+        .twitter { --accent: #1da1f2; }
+        .instagram { --accent: #e4405f; }
+        .linkedin { --accent: #0077b5; }
+        .youtube { --accent: #ff0000; }
+        .github { --accent: #333333; }
+        .discord { --accent: #7289da; }
+        .tiktok { --accent: #ff0050; }
+        .reddit { --accent: #ff4500; }
+
+        .social-card:hover.twitter { border-color: rgba(29, 161, 242, 0.6); }
+        .social-card:hover.instagram { border-color: rgba(228, 64, 95, 0.6); }
+        .social-card:hover.linkedin { border-color: rgba(0, 119, 181, 0.6); }
+        .social-card:hover.youtube { border-color: rgba(255, 0, 0, 0.6); }
+        .social-card:hover.github { border-color: rgba(255, 255, 255, 0.6); }
+        .social-card:hover.discord { border-color: rgba(114, 137, 218, 0.6); }
+        .social-card:hover.tiktok { border-color: rgba(255, 0, 80, 0.6); }
+        .social-card:hover.reddit { border-color: rgba(255, 69, 0, 0.6); }
+
+        /* New space elements */
+        .ice-planet {
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 35% 35%, 
+                #e3f2fd 0%, 
+                #bbdefb 20%,
+                #90caf9 40%,
+                #64b5f6 60%,
+                #42a5f5 80%,
+                #2196f3 100%);
+            border-radius: 50%;
+            animation: planetSpin 30s linear infinite;
+            box-shadow: 
+                inset -10px -10px 20px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(33, 150, 243, 0.4);
+        }
+
+        .ice-planet::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 80%;
+            height: 60%;
+            background: linear-gradient(45deg,
+                rgba(255, 255, 255, 0.6) 0%,
+                transparent 30%,
+                rgba(255, 255, 255, 0.4) 60%,
+                transparent 100%);
+            border-radius: 50%;
+        }
+
+        .desert-planet {
+            position: absolute;
+            bottom: 25%;
+            right: 8%;
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 40% 30%, 
+                #fff3e0 0%, 
+                #ffe0b2 25%,
+                #ffcc02 50%,
+                #ff9800 75%,
+                #f57c00 100%);
+            border-radius: 50%;
+            animation: planetSpin 40s linear infinite reverse;
+            box-shadow: 
+                inset -8px -8px 15px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(255, 152, 0, 0.3);
+        }
+
+        .asteroid-field {
+            position: absolute;
+            top: 60%;
+            left: 20%;
+            width: 300px;
+            height: 200px;
+        }
+
+        .asteroid {
+            position: absolute;
+            background: linear-gradient(45deg, #424242, #616161, #757575);
+            border-radius: 30% 70% 40% 60%;
+            animation: asteroidFloat 15s ease-in-out infinite;
+        }
+
+        .asteroid-1 {
+            width: 12px;
+            height: 10px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .asteroid-2 {
+            width: 8px;
+            height: 8px;
+            top: 60%;
+            left: 40%;
+            animation-delay: -3s;
+        }
+
+        .asteroid-3 {
+            width: 15px;
+            height: 12px;
+            top: 80%;
+            left: 70%;
+            animation-delay: -6s;
+        }
+
+        .asteroid-4 {
+            width: 6px;
+            height: 7px;
+            top: 40%;
+            left: 80%;
+            animation-delay: -9s;
+        }
+
+        .space-station {
+            position: absolute;
+            top: 40%;
+            right: 15%;
+            width: 80px;
+            height: 40px;
+            animation: stationOrbit 20s ease-in-out infinite;
+        }
+
+        .station-core {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background: linear-gradient(135deg, #37474f, #546e7a, #78909c);
+            border-radius: 10px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .station-solar-panel {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            background: linear-gradient(135deg, #1565c0, #1976d2, #1e88e5);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .station-solar-panel:first-child {
+            left: -30px;
+        }
+
+        .station-solar-panel:last-child {
+            right: -30px;
+        }
+
+        .pulsar {
+            position: absolute;
+            top: 15%;
+            right: 25%;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #ffffff 0%, #e1f5fe 50%, transparent 100%);
+            border-radius: 50%;
+            animation: pulsarPulse 2s ease-in-out infinite;
+        }
+
+        .pulsar::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: pulsarRing 2s ease-in-out infinite;
+        }
+
+        .satellite {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            width: 30px;
+            height: 20px;
+            background: linear-gradient(45deg, #263238, #37474f, #455a64);
+            border-radius: 3px;
+            animation: satelliteOrbit 25s linear infinite;
+        }
+
+        .satellite::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 1px;
+            background: #90a4ae;
+            top: -8px;
+            left: 7px;
+        }
+
+        .satellite::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #cfd8dc, #90a4ae);
+            border-radius: 50%;
+            top: -12px;
+            right: -4px;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            mix-blend-mode: screen;
+            transition: transform 0.1s ease;
+        }
+
+        /* Animations */
+        @keyframes gentleTwinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes nebulaFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            33% { transform: translateY(-30px) rotate(3deg) scale(1.08); }
+            66% { transform: translateY(15px) rotate(-2deg) scale(0.95); }
+        }
+
+        @keyframes navPrismGlow {
+            0%, 100% { 
+                box-shadow: 
+                    inset 0 0 15px rgba(255, 255, 255, 0.1),
+                    0 0 20px rgba(138, 43, 226, 0.3);
+                transform: rotate(0deg);
+            }
+            50% { 
+                box-shadow: 
+                    inset 0 0 25px rgba(255, 255, 255, 0.2),
+                    0 0 40px rgba(50, 205, 50, 0.5);
+                transform: rotate(180deg);
+            }
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px rgba(138, 43, 226, 0.6),
+                    0 0 40px rgba(50, 205, 50, 0.4);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 30px rgba(138, 43, 226, 0.8),
+                    0 0 60px rgba(50, 205, 50, 0.6);
+            }
+        }
+
+        @keyframes planetSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes asteroidFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(90deg); }
+            50% { transform: translateY(5px) rotate(180deg); }
+            75% { transform: translateY(-5px) rotate(270deg); }
+        }
+
+        @keyframes stationOrbit {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            25% { transform: translateY(-15px) translateX(10px) rotate(5deg); }
+            50% { transform: translateY(0px) translateX(20px) rotate(0deg); }
+            75% { transform: translateY(15px) translateX(10px) rotate(-5deg); }
+        }
+
+        @keyframes pulsarPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+            50% { 
+                transform: scale(1.5);
+                box-shadow: 0 0 40px rgba(255, 255, 255, 1);
+            }
+        }
+
+        @keyframes pulsarRing {
+            0% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% { 
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes satelliteOrbit {
+            0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .prism-nav {
+                top: 1.5rem;
+                left: 1.5rem;
+            }
+            
+            .nav-prism {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .social-title {
+                font-size: 2rem;
+                letter-spacing: 0.1em;
+            }
+            
+            .social-container {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* Simplify space elements on mobile */
+            .ice-planet {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .desert-planet {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .space-station {
+                width: 60px;
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .social-title {
+                font-size: 1.5rem;
+            }
+            
+            .social-container {
+                padding: 1.5rem 1rem;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+
+            .social-card {
+                padding: 1.5rem;
+            }
+
+            /* Hide complex elements on very small screens */
+            .asteroid-field,
+            .satellite {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="space-container">
+        <div class="stars"></div>
+        <div class="purple-nebula"></div>
+        <div class="green-nebula"></div>
+    </div>
+
+    <a href="index.html" class="prism-nav">
+        <div class="nav-prism">
+            <div class="nav-prism-crystal"></div>
+        </div>
+        <div class="nav-label">HOME</div>
+    </a>
+
+    <div class="ice-planet"></div>
+    <div class="desert-planet"></div>
+    <div class="pulsar"></div>
+
+    <div class="asteroid-field">
+        <div class="asteroid asteroid-1"></div>
+        <div class="asteroid asteroid-2"></div>
+        <div class="asteroid asteroid-3"></div>
+        <div class="asteroid asteroid-4"></div>
+    </div>
+
+    <div class="space-station">
+        <div class="station-solar-panel"></div>
+        <div class="station-core"></div>
+        <div class="station-solar-panel"></div>
+    </div>
+
+    <div class="satellite"></div>
+
+    <div class="custom-cursor"></div>
+
+    <div class="main-content">
+        <div class="social-container">
+            <h1 class="social-title">SOCIAL MEDIA</h1>
+            <p class="social-subtitle">Connect with the PRISM team across the digital cosmos. Follow our mission updates, behind-the-scenes content, and space exploration journey.</p>
+            
+            <div class="social-grid">
+                <div class="social-card instagram" onclick="openSocialMedia('instagram')">
+                    <span class="social-icon">📸</span>
+                    <div class="social-name">Instagram</div>
+                    <div class="social-handle">@prism_space_placeholder</div>
+                    <div class="social-description">Visual journey of our satellite development, team moments, and stunning space imagery.</div>
+                    <div class="social-followers">1 Follower</div>
+                </div>
+
+                <div class="social-card linkedin" onclick="openSocialMedia('linkedin')">
+                    <span class="social-icon">💼</span>
+                    <div class="social-name">LinkedIn</div>
+                    <div class="social-handle">PRISM Capstone Team</div>
+                    <div class="social-description">Professional updates, research publications, and aerospace industry connections.</div>
+                    <div class="social-followers">1 Connection</div>
+                </div>
+
+                <div class="social-card youtube" onclick="openSocialMedia('youtube')">
+                    <span class="social-icon">▶️</span>
+                    <div class="social-name">YouTube</div>
+                    <div class="social-handle">PRISM Space Channel</div>
+                    <div class="social-description">Technical demonstrations, mission documentaries, and educational space content.</div>
+                    <div class="social-followers">1 Subscriber</div>
+                </div>
+
+                <div class="social-card github" onclick="openSocialMedia('github')">
+                    <span class="social-icon">🔧</span>
+                    <div class="social-name">GitHub</div>
+                    <div class="social-handle">PRISM-Team-placeholder</div>
+                    <div class="social-description">Open-source satellite software, mission planning tools, and technical documentation.</div>
+                    <div class="social-followers">1 Repository</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create realistic star field with different colors
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const starCount = 120;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() > 0.85 ? Math.random() * 2.5 + 2 : Math.random() * 1.5 + 0.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Different star colors
+                const starType = Math.random();
+                if (starType < 0.7) {
+                    star.style.background = '#ffffff';
+                } else if (starType < 0.85) {
+                    star.style.background = '#ffd54f'; // Yellow stars
+                } else if (starType < 0.95) {
+                    star.style.background = '#ff8a65'; // Orange stars
+                } else {
+                    star.style.background = '#81c784'; // Green-blue stars
+                }
+                
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                star.style.left = x + '%';
+                star.style.top = y + '%';
+                star.style.animationDelay = Math.random() * 4 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Custom cursor
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor
