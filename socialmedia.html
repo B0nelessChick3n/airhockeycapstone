@@ -1,4 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRISM - Social Media Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+            background: #000011;
+            color: white;
+            overflow-x: hidden;
+            cursor: none;
+            min-height: 100vh;
+        }
+
+        .space-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: gentleTwinkle 4s ease-in-out infinite;
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(45deg, #ffffff, transparent);
+            border-radius: 50%;
+            animation: shootingStar 3s linear forwards;
+        }
+
+        @keyframes shootingStar {
+            0% {
+                transform: translateX(0) translateY(0) scale(0);
+                opacity: 1;
+            }
+            10% {
+                transform: translateX(10px) translateY(5px) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(300px) translateY(150px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .purple-nebula {
+            position: absolute;
+            top: 10%;
+            right: 15%;
+            width: 400px;
+            height: 300px;
+            background: radial-gradient(ellipse, 
+                rgba(138, 43, 226, 0.4) 0%, 
+                rgba(75, 0, 130, 0.3) 30%,
+                rgba(138, 43, 226, 0.2) 60%,
+                transparent 80%);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: nebulaFloat 40s ease-in-out infinite;
+        }
+
+        .green-nebula {
+            position: absolute;
+            bottom: 20%;
+            left: 10%;
+            width: 350px;
+            height: 250px;
+            background: radial-gradient(ellipse, 
+                rgba(50, 205, 50, 0.3) 0%, 
+                rgba(34, 139, 34, 0.25) 40%,
+                rgba(50, 205, 50, 0.15) 70%,
+                transparent 90%);
+            border-radius: 50%;
+            filter: blur(1.5px);
+            animation: nebulaFloat 35s ease-in-out infinite reverse;
+        }
+
+        .red-nebula {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            width: 280px;
+            height: 200px;
+            background: radial-gradient(ellipse, 
+                rgba(220, 20, 60, 0.25) 0%, 
+                rgba(139, 0, 0, 0.2) 50%,
+                transparent 80%);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: nebulaFloat 45s ease-in-out infinite;
+        }
+
+        .distant-galaxy {
+            position: absolute;
+            top: 5%;
+            left: 70%;
+            width: 120px;
+            height: 80px;
+            background: radial-gradient(ellipse,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(100, 149, 237, 0.15) 40%,
+                rgba(138, 43, 226, 0.1) 70%,
+                transparent 90%);
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: galaxySpin 80s linear infinite reverse;
+        }
+
+        .space-depth-layer-1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.03) 0%, transparent 30%),
+                radial-gradient(circle at 20% 80%, rgba(50, 205, 50, 0.025) 0%, transparent 35%);
+            animation: depthLayer1 120s ease-in-out infinite;
+        }
+
+        .space-depth-layer-2 {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -402,11 +544,12 @@
             animation-delay: -12s;
         }
 
+        /* FIXED: Modern satellite with centered solar arrays */
         .modern-satellite {
             position: absolute;
             top: 40%;
             left: 25%;
-            width: 60px;
+            width: 100px;
             height: 40px;
             animation: satelliteFloat 35s ease-in-out infinite;
         }
@@ -476,19 +619,20 @@
             top: 66%;
         }
 
+        /* Fixed positioning for left and right arrays */
         .modern-satellite .satellite-solar-array:first-of-type {
-            left: -25px;
+            left: 10px;
         }
 
         .modern-satellite .satellite-solar-array:last-of-type {
-            right: -25px;
+            right: 10px;
         }
 
         .satellite-antenna {
             position: absolute;
             top: -20px;
             left: 50%;
-            transform: translateX(-50%);  /* keeps it centered on the line */
+            transform: translateX(-50%);
             width: 2px;
             height: 20px;
             background: white;
@@ -505,11 +649,12 @@
             box-shadow: 0 0 8px rgba(231, 76, 60, 0.5);
         }
 
+        /* FIXED: Second modern satellite */
         .modern-satellite-2 {
             position: absolute;
             top: 65%;
             right: 20%;
-            width: 50px;
+            width: 90px;
             height: 35px;
             animation: satelliteFloat2 42s ease-in-out infinite;
         }
@@ -547,12 +692,13 @@
             box-shadow: 0 0 8px rgba(30, 136, 229, 0.3);
         }
 
+        /* Fixed positioning for wings */
         .modern-satellite-2 .satellite-wing:first-of-type {
-            left: -25px;
+            left: 7.5px;
         }
 
         .modern-satellite-2 .satellite-wing:last-of-type {
-            right: -25px;
+            right: 7.5px;
         }
 
         .satellite-sensor {
@@ -688,7 +834,7 @@
             position: absolute;
             top: 20%;
             right: 40%;
-            width: 45px;
+            width: 70px;
             height: 30px;
             animation: satelliteOrbit 30s linear infinite;
         }
@@ -724,11 +870,11 @@
         }
 
         .satellite .satellite-panel:first-of-type {
-            left: -25px;
+            left: 5px;
         }
 
         .satellite .satellite-panel:last-of-type {
-            right: -25px;
+            right: 5px;
         }
 
         .satellite-comm {
@@ -1030,282 +1176,3 @@
                 display: none;
             }
         }
-    </style>
-</head>
-<body>
-    <div class="space-container">
-        <div class="space-depth-layer-1"></div>
-        <div class="space-depth-layer-2"></div>
-        <div class="stars"></div>
-        <div class="purple-nebula"></div>
-        <div class="green-nebula"></div>
-        <div class="red-nebula"></div>
-        <div class="galaxy-spiral"></div>
-        <div class="distant-galaxy"></div>
-    </div>
-
-    <a href="index.html" class="prism-nav">
-        <div class="nav-prism">
-            <div class="nav-prism-crystal"></div>
-        </div>
-        <div class="nav-label">HOME</div>
-    </a>
-
-    <div class="ice-planet"></div>
-    <div class="desert-planet"></div>
-    <div class="gas-giant"></div>
-    <div class="pulsar"></div>
-    <div class="wormhole"></div>
-
-    <div class="asteroid-field">
-        <div class="asteroid asteroid-1"></div>
-        <div class="asteroid asteroid-2"></div>
-        <div class="asteroid asteroid-3"></div>
-        <div class="asteroid asteroid-4"></div>
-        <div class="asteroid asteroid-5"></div>
-    </div>
-
-    <div class="modern-satellite">
-        <div class="satellite-body">
-            <div class="satellite-antenna"></div>
-            <div class="satellite-dish"></div>
-        </div>
-        <div class="satellite-solar-array"></div>
-        <div class="satellite-solar-array"></div>
-    </div>
-
-    <div class="modern-satellite-2">
-        <div class="satellite-body-2">
-            <div class="satellite-sensor"></div>
-        </div>
-        <div class="satellite-wing"></div>
-        <div class="satellite-wing"></div>
-    </div>
-
-    <div class="satellite">
-        <div class="satellite-main-body">
-            <div class="satellite-comm"></div>
-        </div>
-        <div class="satellite-panel"></div>
-        <div class="satellite-panel"></div>
-    </div>
-
-    <div class="satellite"></div>
-    <div class="space-probe"></div>
-    
-    <div class="space-debris debris-1"></div>
-    <div class="space-debris debris-2"></div>
-    <div class="space-debris debris-3"></div>
-
-    <div class="custom-cursor"></div>
-
-    <div class="main-content">
-        <div class="social-container">
-            <h1 class="social-title">SOCIAL MEDIA</h1>
-            <p class="social-subtitle">Connect with the PRISM team across the digital cosmos. Follow our mission updates, behind-the-scenes content, and space exploration journey.</p>
-            
-            <div class="social-grid">
-                <div class="social-card instagram" onclick="openSocialMedia('instagram')">
-                    <span class="social-icon">📸</span>
-                    <div class="social-name">Instagram</div>
-                    <div class="social-handle">@prism_space_placeholder</div>
-                    <div class="social-description">Visual journey of our satellite development, team moments, and stunning space imagery.</div>
-                    <div class="social-followers">1 Follower</div>
-                </div>
-
-                <div class="social-card linkedin" onclick="openSocialMedia('linkedin')">
-                    <span class="social-icon">💼</span>
-                    <div class="social-name">LinkedIn</div>
-                    <div class="social-handle">PRISM Capstone Team</div>
-                    <div class="social-description">Professional updates, research publications, and aerospace industry connections.</div>
-                    <div class="social-followers">1 Connection</div>
-                </div>
-
-                <div class="social-card youtube" onclick="openSocialMedia('youtube')">
-                    <span class="social-icon">▶️</span>
-                    <div class="social-name">YouTube</div>
-                    <div class="social-handle">PRISM Space Channel</div>
-                    <div class="social-description">Technical demonstrations, mission documentaries, and educational space content.</div>
-                    <div class="social-followers">1 Subscriber</div>
-                </div>
-
-                <div class="social-card github" onclick="openSocialMedia('github')">
-                    <span class="social-icon">🔧</span>
-                    <div class="social-name">GitHub</div>
-                    <div class="social-handle">PRISM-Team-placeholder</div>
-                    <div class="social-description">Open-source satellite software, mission planning tools, and technical documentation.</div>
-                    <div class="social-followers">1 Repository</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Create realistic star field with different colors and sizes
-        function createStars() {
-            const starsContainer = document.querySelector('.stars');
-            const starCount = 200;
-            
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                const size = Math.random() > 0.85 ? Math.random() * 3 + 2.5 : Math.random() * 1.8 + 0.5;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                
-                // Different star colors with realistic distribution
-                const starType = Math.random();
-                if (starType < 0.6) {
-                    star.style.background = '#ffffff';
-                } else if (starType < 0.75) {
-                    star.style.background = '#ffd54f';
-                } else if (starType < 0.85) {
-                    star.style.background = '#ff8a65';
-                } else if (starType < 0.92) {
-                    star.style.background = '#81c784';
-                } else {
-                    star.style.background = '#9575cd';
-                }
-                
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                
-                star.style.left = x + '%';
-                star.style.top = y + '%';
-                star.style.animationDelay = Math.random() * 4 + 's';
-                star.style.animationDuration = (Math.random() * 4 + 3) + 's';
-                
-                starsContainer.appendChild(star);
-            }
-        }
-
-        // Create cosmic dust particles
-        function createCosmicDust() {
-            const spaceContainer = document.querySelector('.space-container');
-            const dustCount = 50;
-            
-            for (let i = 0; i < dustCount; i++) {
-                const dust = document.createElement('div');
-                dust.className = 'cosmic-dust';
-                
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                
-                dust.style.left = x + '%';
-                dust.style.top = y + '%';
-                dust.style.animationDelay = Math.random() * 25 + 's';
-                dust.style.animationDuration = (Math.random() * 15 + 20) + 's';
-                
-                spaceContainer.appendChild(dust);
-            }
-        }
-
-        // Enhanced custom cursor with direct positioning
-        const cursor = document.querySelector('.custom-cursor');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Cursor hover effects
-        document.addEventListener('mouseenter', (e) => {
-            if (e.target.classList.contains('social-card') || e.target.classList.contains('prism-nav')) {
-                cursor.style.transform = 'scale(1.5)';
-                cursor.style.boxShadow = '0 0 25px rgba(138, 43, 226, 0.8)';
-            }
-        });
-
-        document.addEventListener('mouseleave', (e) => {
-            if (e.target.classList.contains('social-card') || e.target.classList.contains('prism-nav')) {
-                cursor.style.transform = 'scale(1)';
-                cursor.style.boxShadow = '0 0 15px rgba(138, 43, 226, 0.6)';
-            }
-        });
-
-        // Social media interaction function
-        function openSocialMedia(platform) {
-            // Add click effect
-            const clickedCard = event.currentTarget;
-            clickedCard.style.transform = 'translateY(-8px) scale(0.98)';
-            
-            setTimeout(() => {
-                clickedCard.style.transform = 'translateY(-8px) scale(1.02)';
-            }, 150);
-
-            // Placeholder for actual social media links
-            console.log(`Opening ${platform} - Link not yet configured`);
-            
-            // You can replace this with actual social media links:
-            // const socialLinks = {
-            //     instagram: 'https://instagram.com/prism_space',
-            //     linkedin: 'https://linkedin.com/company/prism-space',
-            //     youtube: 'https://youtube.com/c/prismspace',
-            //     github: 'https://github.com/prism-team'
-            // };
-            // window.open(socialLinks[platform], '_blank');
-        }
-
-        // Add periodic effects
-        function addPeriodicEffects() {
-            // Randomly add new shooting stars
-            setInterval(() => {
-                if (Math.random() < 0.3) {
-                    const starsContainer = document.querySelector('.stars');
-                    const shootingStar = document.createElement('div');
-                    shootingStar.className = 'shooting-star';
-                    
-                    shootingStar.style.left = Math.random() * 50 + '%';
-                    shootingStar.style.top = Math.random() * 50 + '%';
-                    shootingStar.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
-                    
-                    starsContainer.appendChild(shootingStar);
-                    
-                    // Remove after animation
-                    setTimeout(() => {
-                        shootingStar.remove();
-                    }, 4000);
-                }
-            }, 8000);
-
-            // Add cosmic dust periodically
-            setInterval(() => {
-                if (Math.random() < 0.4) {
-                    const spaceContainer = document.querySelector('.space-container');
-                    const dust = document.createElement('div');
-                    dust.className = 'cosmic-dust';
-                    
-                    dust.style.left = Math.random() * 100 + '%';
-                    dust.style.top = Math.random() * 100 + '%';
-                    dust.style.animationDuration = (Math.random() * 15 + 20) + 's';
-                    
-                    spaceContainer.appendChild(dust);
-                    
-                    // Remove after animation
-                    setTimeout(() => {
-                        dust.remove();
-                    }, 35000);
-                }
-            }, 12000);
-        }
-
-        // Initialize everything when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            createStars();
-            createCosmicDust();
-            addPeriodicEffects();
-        });
-
-        // Performance optimization - pause animations when tab is not visible
-        document.addEventListener('visibilitychange', () => {
-            const spaceContainer = document.querySelector('.space-container');
-            if (document.hidden) {
-                spaceContainer.style.animationPlayState = 'paused';
-            } else {
-                spaceContainer.style.animationPlayState = 'running';
-            }
-        });
-    </script>
-</body>
-</html>
