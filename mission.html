@@ -288,11 +288,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
             border: 3px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .team-member:hover .member-photo {
@@ -575,7 +581,9 @@
                 
                 <div class="team-lead-container team-lead">
                     <div class="team-member">
-                        <div class="member-photo">👨‍🚀</div>
+                        <div class="member-photo">
+                            <img src="images/team/ryan-coder.jpg" alt="Alex Rodriguez" />
+                        </div>
                         <div class="member-name">Ryan Coder</div>
                         <div class="member-position">Team Lead</div>
                         <div class="member-degree">B.S. Aerospace Engineering<br>Minor: Security & Intelligence</div>
