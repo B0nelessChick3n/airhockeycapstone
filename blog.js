@@ -71,8 +71,10 @@
         setInterval(() => {
             iceBeltPhase += 0.01;
             const iceSystem = document.querySelector('.ice-belt-system');
-            const shimmer = Math.sin(iceBeltPhase) * 0.3 + 0.7;
-            iceSystem.style.filter = `brightness(${shimmer}) contrast(1.1)`;
+            if (iceSystem) {
+                const shimmer = Math.sin(iceBeltPhase) * 0.3 + 0.7;
+                iceSystem.style.filter = `brightness(${shimmer}) contrast(1.1)`;
+            }
         }, 100);
 
         // Blog post interactions
@@ -120,10 +122,12 @@
         setInterval(() => {
             nebulaPhase += 0.008;
             const nebula = document.querySelector('.frozen-nebula');
-            const intensity = Math.sin(nebulaPhase) * 0.3 + 0.6;
-            const hueShift = Math.sin(nebulaPhase * 0.5) * 20;
-            nebula.style.opacity = intensity;
-            nebula.style.filter = `blur(3px) hue-rotate(${hueShift}deg)`;
+            if (nebula) {
+                const intensity = Math.sin(nebulaPhase) * 0.3 + 0.6;
+                const hueShift = Math.sin(nebulaPhase * 0.5) * 20;
+                nebula.style.opacity = intensity;
+                nebula.style.filter = `blur(3px) hue-rotate(${hueShift}deg)`;
+            }
         }, 120);
 
         // Smooth navigation prism rotation with ice crystal effect
@@ -134,7 +138,9 @@
             navRotation += 0.3;
             if (navRotation >= 360) navRotation -= 360;
             
-            navPrism.style.transform = `rotateZ(${navRotation}deg)`;
+            if (navPrism) {
+                navPrism.style.transform = `rotateZ(${navRotation}deg)`;
+            }
             requestAnimationFrame(updateNavPrism);
         }
         
@@ -177,43 +183,6 @@
             }
         });
 
-        // Initialize all effects
-        createStars();
-
-        // Add CSS animations for trail and sparkle effects
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes trailFade {
-                0% {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(0.3);
-                }
-            }
-            
-            @keyframes sparkleEffect {
-                0% {
-                    opacity: 0;
-                    transform: scale(0) rotate(0deg);
-                    box-shadow: 0 0 0px rgba(200, 230, 255, 0);
-                }
-                50% {
-                    opacity: 1;
-                    transform: scale(1.5) rotate(180deg);
-                    box-shadow: 0 0 15px rgba(200, 230, 255, 0.8);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(0) rotate(360deg);
-                    box-shadow: 0 0 0px rgba(200, 230, 255, 0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
         // Blog post click handlers
         blogPosts.forEach(post => {
             post.addEventListener('click', function(e) {
@@ -245,4 +214,19 @@
                 this.style.color = 'rgba(255, 255, 255, 0.8)';
                 this.style.textShadow = 'none';
             });
+        });
+
+        // Initialize all effects
+        createStars();
+
+        // Wait for DOM to be fully loaded before initializing
+        document.addEventListener('DOMContentLoaded', function() {
+            // Re-initialize if elements weren't ready
+            if (document.querySelectorAll('.star').length === 0) {
+                createStars();
+            }
+            
+            // Start all animations
+            updateNavPrism();
+            updateCrystalPositions();
         });
