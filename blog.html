@@ -544,6 +544,35 @@
             }
         }
 
+        @keyframes trailFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+        }
+        
+        @keyframes sparkleEffect {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+                box-shadow: 0 0 0px rgba(200, 230, 255, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5) rotate(180deg);
+                box-shadow: 0 0 15px rgba(200, 230, 255, 0.8);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+                box-shadow: 0 0 0px rgba(200, 230, 255, 0);
+            }
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .prism-nav {
@@ -678,6 +707,6 @@
         </div>
     </div>
 
-    <script src="contactus.js"></script>
+    <script src="blog.js"></script>
 </body>
 </html>
