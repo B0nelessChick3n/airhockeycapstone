@@ -195,6 +195,261 @@
             margin-bottom: 1rem;
         }
 
+        /* RPO Demonstration Styles */
+        .rpo-demonstration {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.03) 0%,
+                rgba(50, 205, 50, 0.06) 50%,
+                rgba(255, 255, 255, 0.03) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .demo-title {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.4rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .demo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .demo-space {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 50, 0.3) 0%, transparent 70%);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .target-satellite {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 30px;
+        }
+
+        .chaser-satellite {
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 35px;
+            height: 25px;
+            opacity: 0;
+            animation: chaserStartPosition 0.5s ease-out 0.5s forwards;
+        }
+
+        .sat-body {
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(135deg, 
+                rgba(200, 200, 200, 0.9) 0%,
+                rgba(150, 150, 150, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .sat-body::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 40%;
+            background: rgba(50, 150, 255, 0.6);
+            border-radius: 2px;
+        }
+
+        .sat-panel {
+            position: absolute;
+            background: linear-gradient(45deg, 
+                rgba(0, 100, 255, 0.8) 0%,
+                rgba(0, 150, 255, 0.6) 50%,
+                rgba(0, 100, 255, 0.4) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sat-panel-1 {
+            width: 15px;
+            height: 80%;
+            top: 10%;
+            left: -18px;
+            border-radius: 2px;
+        }
+
+        .sat-panel-2 {
+            width: 15px;
+            height: 80%;
+            top: 10%;
+            right: -18px;
+            border-radius: 2px;
+        }
+
+        .thruster-glow {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 12px;
+            background: radial-gradient(ellipse, 
+                rgba(255, 100, 0, 0.8) 0%,
+                rgba(255, 200, 0, 0.6) 50%,
+                transparent 100%);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .orbit-path {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 2px dashed rgba(50, 205, 50, 0.4);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .approach-path {
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, 
+                rgba(255, 215, 0, 0.8) 0%,
+                transparent 100%);
+            opacity: 0;
+            transform-origin: left center;
+        }
+
+        .demo-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .demo-btn {
+            background: linear-gradient(135deg, 
+                rgba(138, 43, 226, 0.8) 0%,
+                rgba(50, 205, 50, 0.6) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 12px 30px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .demo-btn:hover {
+            background: linear-gradient(135deg, 
+                rgba(138, 43, 226, 1) 0%,
+                rgba(50, 205, 50, 0.8) 100%);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
+        }
+
+        .demo-status {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Mission objectives styles */
+        .mission-objectives {
+            margin-bottom: 3rem;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .objective-section {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.03) 0%,
+                rgba(138, 43, 226, 0.06) 50%,
+                rgba(255, 255, 255, 0.03) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .objective-section h3 {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .objective-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .objective-item {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.5;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid rgba(138, 43, 226, 0.5);
+            border-radius: 5px;
+        }
+
+        .vision-section {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.03) 0%,
+                rgba(50, 205, 50, 0.06) 50%,
+                rgba(255, 255, 255, 0.03) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .vision-section h3 {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.4rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .vision-section p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
         .team-section {
             width: 100%;
         }
@@ -420,6 +675,24 @@
                 inset 0 0 20px rgba(0, 0, 0, 0.9);
         }
 
+        /* RPO Animation Sequences */
+        .rpo-active .chaser-satellite {
+            animation: rpoSequence 12s ease-in-out infinite;
+        }
+
+        .rpo-active .thruster-glow {
+            animation: thrusterFire 12s ease-in-out infinite;
+        }
+
+        .rpo-active .orbit-path {
+            opacity: 1;
+            animation: orbitReveal 1s ease-out 2s;
+        }
+
+        .rpo-active .approach-path {
+            animation: approachPath 12s ease-in-out infinite;
+        }
+
         /* Animations */
         @keyframes gentleTwinkle {
             0%, 100% { opacity: 0.3; transform: scale(1); }
@@ -471,8 +744,76 @@
             100% { transform: rotate(360deg) scale(1); }
         }
 
+        @keyframes chaserStartPosition {
+            to { opacity: 1; }
+        }
+
+        @keyframes rpoSequence {
+            0% { 
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+            15% { 
+                transform: translate(80px, 40px) rotate(45deg);
+            }
+            25% { 
+                transform: translate(140px, 80px) rotate(90deg);
+            }
+            35% { 
+                transform: translate(160px, 140px) rotate(135deg);
+            }
+            45% { 
+                transform: translate(120px, 180px) rotate(180deg);
+            }
+            55% { 
+                transform: translate(60px, 160px) rotate(225deg);
+            }
+            65% { 
+                transform: translate(20px, 120px) rotate(270deg);
+            }
+            75% { 
+                transform: translate(40px, 60px) rotate(315deg);
+            }
+            85% { 
+                transform: translate(80px, 40px) rotate(360deg);
+            }
+            95% { 
+                transform: translate(120px, 80px) rotate(360deg);
+            }
+            100% { 
+                transform: translate(140px, 100px) rotate(360deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes thrusterFire {
+            0%, 10%, 90%, 100% { opacity: 0; }
+            15%, 85% { opacity: 0.8; }
+            25%, 75% { opacity: 0.6; }
+            35%, 65% { opacity: 0.9; }
+            45%, 55% { opacity: 0.7; }
+        }
+
+        @keyframes orbitReveal {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes approachPath {
+            0% { opacity: 0; width: 0; }
+            15% { opacity: 0.8; width: 100px; }
+            25% { opacity: 0.6; width: 150px; }
+            85% { opacity: 0.4; width: 200px; }
+            100% { opacity: 0; width: 0; }
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 1024px) {
+            .objectives-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
             .team-row {
                 justify-content: center;
                 gap: 1.5rem;
@@ -503,6 +844,19 @@
                 padding: 2rem 1.5rem;
                 margin: 1rem;
             }
+
+            .demo-space {
+                width: 300px;
+                height: 225px;
+            }
+
+            .objectives-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .objective-section {
+                padding: 1.5rem;
+            }
             
             .team-row {
                 flex-direction: column;
@@ -532,6 +886,15 @@
             
             .main-content {
                 padding: 2rem 1rem 1rem;
+            }
+
+            .demo-space {
+                width: 250px;
+                height: 180px;
+            }
+
+            .objective-section {
+                padding: 1rem;
             }
 
             .team-member {
@@ -571,9 +934,78 @@
             <h1 class="mission-title">OUR MISSION</h1>
             
             <div class="mission-statement">
-                <h2>PRISM: Proximity & Rendezvous Integrated Simulation Model</h2>
-                <p>Our mission is to advance space technology through an innovative low-cost satellite demonstration model, pushing the boundaries of what's possible for Rendezvous Proximity Operations (RPO). We are dedicated to creating cutting-edge solutions that contribute to scientific discovery, space exploration, and technological advancement.</p>
-                <p>Through collaborative research, rigorous engineering, and passionate dedication to excellence, we aim to enable and inspire the next generation of space professionals while delivering meaningful contributions to the aerospace community.</p>
+                <h2>Pioneering the Future of Rendezvous and Proximity Operations</h2>
+                <p>At PRISM, our mission is to design, build, and validate a budget friendly, scalable 3DOF satellite platform that demonstrates key technologies for safe and precise Rendezvous and Proximity Operations (RPO). As space becomes increasingly crowded, the ability to approach, dock, service, or refuel spacecraft is more critical than ever. PRISM aims to advance these capabilities at the undergraduate level, bridging classroom theory with real-world engineering challenges.</p>
+            </div>
+
+            <div class="rpo-demonstration">
+                <h3 class="demo-title">Rendezvous and Proximity Operations Simulation</h3>
+                <div class="demo-container">
+                    <div class="demo-space">
+                        <div class="target-satellite">
+                            <div class="sat-body"></div>
+                            <div class="sat-panel sat-panel-1"></div>
+                            <div class="sat-panel sat-panel-2"></div>
+                        </div>
+                        <div class="chaser-satellite">
+                            <div class="sat-body"></div>
+                            <div class="sat-panel sat-panel-1"></div>
+                            <div class="sat-panel sat-panel-2"></div>
+                            <div class="thruster-glow"></div>
+                        </div>
+                        <div class="orbit-path"></div>
+                        <div class="approach-path"></div>
+                    </div>
+                    <div class="demo-controls">
+                        <button class="demo-btn" id="startDemo">Start RPO Demo</button>
+                        <div class="demo-status">Ready to demonstrate approach, orbit, and rendezvous</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mission-objectives">
+                <div class="objectives-grid">
+                    <div class="objective-section">
+                        <h3>Why RPO Matters</h3>
+                        <div class="objective-list">
+                            <div class="objective-item">
+                                <strong>Enabling Sustainability in Space:</strong> RPO technologies support satellite servicing, debris mitigation, and life extension of space assets.
+                            </div>
+                            <div class="objective-item">
+                                <strong>Advancing Human Exploration:</strong> From docking with the ISS to assembling spacecraft for lunar and Martian missions, RPO is a cornerstone of future exploration.
+                            </div>
+                            <div class="objective-item">
+                                <strong>Strengthening National Security & Industry Leadership:</strong> Precision maneuvering and satellite autonomy are key to maintaining leadership and accountability in aerospace and defense.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="objective-section">
+                        <h3>Our Objectives</h3>
+                        <div class="objective-list">
+                            <div class="objective-item">
+                                <strong>Design & Build</strong> a 3DOF spacecraft platform capable of simulating in-orbit-plane RPO maneuvers on an air-bearing test bed.
+                            </div>
+                            <div class="objective-item">
+                                <strong>Integrate CO₂ Thrusters & Reaction Wheel Control</strong> to achieve controlled mobility and attitude adjustment.
+                            </div>
+                            <div class="objective-item">
+                                <strong>Develop and Validate Algorithms</strong> for guidance, navigation, and control (GNC) in proximity scenarios.
+                            </div>
+                            <div class="objective-item">
+                                <strong>Demonstrate Proof-of-Concept</strong> that can serve as a foundation for future orbital testing and research.
+                            </div>
+                            <div class="objective-item">
+                                <strong>Educate & Inspire</strong> the next generation of aerospace engineers by providing a hands-on, research-driven experience.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vision-section">
+                    <h3>Our Vision</h3>
+                    <p>PRISM seeks to become a model for undergraduate-led space engineering innovation. By combining interdisciplinary collaboration, cutting-edge simulation, and hands-on hardware development, we aim to demonstrate that the future of autonomous spacecraft operations can begin in the lab today.</p>
+                </div>
             </div>
             
             <div class="team-section">
@@ -582,7 +1014,7 @@
                 <div class="team-lead-container team-lead">
                     <div class="team-member">
                         <div class="member-photo">
-                            <img src="images/team/ryan-coder.jpg" alt="Alex Rodriguez" />
+                            <img src="images/team/ryan-coder.jpg" alt="Ryan Coder" />
                         </div>
                         <div class="member-name">Ryan Coder</div>
                         <div class="member-position">Team Lead</div>
