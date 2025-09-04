@@ -36,13 +36,21 @@
         // RPO Demonstration functionality
         function initRPODemo() {
             const startBtn = document.getElementById('startDemo');
-            const demoContainer = document.querySelector('.demo-container');
             const statusText = document.querySelector('.demo-status');
             const demoSpace = document.querySelector('.demo-space');
             
-            let isRunning = false;
+            // Check if elements exist
+            if (!startBtn || !statusText || !demoSpace) {
+                console.log('RPO Demo elements not found');
+                return;
+            }
             
-            startBtn.addEventListener('click', () => {
+            let isRunning = false;
+            let statusInterval;
+            
+            startBtn.addEventListener('click', function() {
+                console.log('RPO Demo button clicked, isRunning:', isRunning);
+                
                 if (!isRunning) {
                     // Start demonstration
                     isRunning = true;
@@ -59,20 +67,18 @@
                         'Maintaining safe distance...',
                         'Completing orbital survey...',
                         'Preparing for rendezvous...',
-                        'Mission objectives achieved!',
-                        'Ready to demonstrate approach, orbit, and rendezvous'
+                        'Mission objectives achieved!'
                     ];
                     
                     let messageIndex = 0;
-                    const statusInterval = setInterval(() => {
-                        statusText.textContent = statusMessages[messageIndex];
+                    statusText.textContent = statusMessages[messageIndex];
+                    
+                    statusInterval = setInterval(function() {
                         messageIndex++;
-                        
-                        if (messageIndex >= statusMessages.length - 1) {
+                        if (messageIndex < statusMessages.length) {
+                            statusText.textContent = statusMessages[messageIndex];
+                        } else {
                             clearInterval(statusInterval);
-                            setTimeout(() => {
-                                statusText.textContent = statusMessages[statusMessages.length - 1];
-                            }, 1000);
                         }
                     }, 1500);
                     
@@ -83,6 +89,11 @@
                     startBtn.textContent = 'Start RPO Demo';
                     startBtn.style.background = 'linear-gradient(135deg, rgba(138, 43, 226, 0.8) 0%, rgba(50, 205, 50, 0.6) 100%)';
                     statusText.textContent = 'Ready to demonstrate approach, orbit, and rendezvous';
+                    
+                    // Clear any running status updates
+                    if (statusInterval) {
+                        clearInterval(statusInterval);
+                    }
                 }
             });
         }
