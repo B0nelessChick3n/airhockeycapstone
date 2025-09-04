@@ -241,16 +241,14 @@
             width: 40px;
             height: 30px;
         }
-
-        .chaser-satellite {
-            position: absolute;
-            top: 20%;
-            left: 15%;
-            width: 35px;
-            height: 25px;
-            opacity: 0;
-            animation: chaserStartPosition 0.5s ease-out 0.5s forwards;
-        }
+.chaser-satellite {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 35px;
+    height: 25px;
+    opacity: 1;
+}
 
         .sat-body {
             width: 100%;
@@ -372,9 +370,10 @@
             box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
         }
 
-        .demo-status {
+        .demo-status-text {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            text-align: center;
             font-style: italic;
         }
 
@@ -677,135 +676,165 @@
 
         /* RPO Animation Sequences */
         .rpo-active .chaser-satellite {
-            animation: rpoSequence 12s ease-in-out infinite;
+            animation: rpoSequence 20s ease-in-out infinite;
         }
 
         .rpo-active .thruster-glow {
-            animation: thrusterFire 12s ease-in-out infinite;
+            animation: thrusterFire 20s ease-in-out infinite;
         }
 
         .rpo-active .orbit-path {
             opacity: 1;
-            animation: orbitReveal 1s ease-out 2s;
+            animation: orbitReveal 1s ease-out 3s;
         }
 
         .rpo-active .approach-path {
-            animation: approachPath 12s ease-in-out infinite;
+            animation: approachPath 20s ease-in-out infinite;
         }
 
         /* Animations */
         @keyframes gentleTwinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
 
-        @keyframes nebulaFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-            33% { transform: translateY(-30px) rotate(3deg) scale(1.08); }
-            66% { transform: translateY(15px) rotate(-2deg) scale(0.95); }
-        }
+@keyframes nebulaFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    33% { transform: translateY(-30px) rotate(3deg) scale(1.08); }
+    66% { transform: translateY(15px) rotate(-2deg) scale(0.95); }
+}
 
-        @keyframes navPrismGlow {
-            0%, 100% { 
-                box-shadow: 
-                    inset 0 0 15px rgba(255, 255, 255, 0.1),
-                    0 0 20px rgba(138, 43, 226, 0.3);
-                transform: rotate(0deg);
-            }
-            50% { 
-                box-shadow: 
-                    inset 0 0 25px rgba(255, 255, 255, 0.2),
-                    0 0 40px rgba(50, 205, 50, 0.5);
-                transform: rotate(180deg);
-            }
-        }
+@keyframes navPrismGlow {
+    0%, 100% { 
+        box-shadow: 
+            inset 0 0 15px rgba(255, 255, 255, 0.1),
+            0 0 20px rgba(138, 43, 226, 0.3);
+        transform: rotate(0deg);
+    }
+    50% { 
+        box-shadow: 
+            inset 0 0 25px rgba(255, 255, 255, 0.2),
+            0 0 40px rgba(50, 205, 50, 0.5);
+        transform: rotate(180deg);
+    }
+}
 
-        @keyframes titleGlow {
-            0%, 100% { 
-                text-shadow: 
-                    0 0 20px rgba(138, 43, 226, 0.6),
-                    0 0 40px rgba(50, 205, 50, 0.4);
-            }
-            50% { 
-                text-shadow: 
-                    0 0 30px rgba(138, 43, 226, 0.8),
-                    0 0 60px rgba(50, 205, 50, 0.6);
-            }
-        }
+@keyframes titleGlow {
+    0%, 100% { 
+        text-shadow: 
+            0 0 20px rgba(138, 43, 226, 0.6),
+            0 0 40px rgba(50, 205, 50, 0.4);
+    }
+    50% { 
+        text-shadow: 
+            0 0 30px rgba(138, 43, 226, 0.8),
+            0 0 60px rgba(50, 205, 50, 0.6);
+    }
+}
 
-        @keyframes planetSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+@keyframes planetSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-        @keyframes wormholeSpin {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.1); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
+@keyframes wormholeSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
 
-        @keyframes chaserStartPosition {
-            to { opacity: 1; }
-        }
+@keyframes rpoSequence {
+    /* Phase 1: Initial approach from distance */
+    0% { 
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    
+    /* Phase 2: Approach maneuver */
+    20% { 
+        transform: translate(120px, 60px) rotate(25deg);
+    }
+    
+    /* Phase 3: Begin inspection orbit - far side */
+    30% { 
+        transform: translate(200px, 120px) rotate(90deg);
+    }
+    
+    /* Phase 4: Inspection orbit - bottom */
+    45% { 
+        transform: translate(160px, 200px) rotate(180deg);
+    }
+    
+    /* Phase 5: Inspection orbit - near side */
+    60% { 
+        transform: translate(80px, 160px) rotate(270deg);
+    }
+    
+    /* Phase 6: Complete orbit - top */
+    75% { 
+        transform: translate(120px, 100px) rotate(360deg);
+    }
+    
+    /* Phase 7: Final approach for rendezvous */
+    90% { 
+        transform: translate(140px, 130px) rotate(405deg);
+    }
+    
+    /* Phase 8: Rendezvous position */
+    100% { 
+        transform: translate(150px, 140px) rotate(450deg);
+        opacity: 1;
+    }
+}
 
-        @keyframes rpoSequence {
-            0% { 
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 1;
-            }
-            15% { 
-                transform: translate(80px, 40px) rotate(45deg);
-            }
-            25% { 
-                transform: translate(140px, 80px) rotate(90deg);
-            }
-            35% { 
-                transform: translate(160px, 140px) rotate(135deg);
-            }
-            45% { 
-                transform: translate(120px, 180px) rotate(180deg);
-            }
-            55% { 
-                transform: translate(60px, 160px) rotate(225deg);
-            }
-            65% { 
-                transform: translate(20px, 120px) rotate(270deg);
-            }
-            75% { 
-                transform: translate(40px, 60px) rotate(315deg);
-            }
-            85% { 
-                transform: translate(80px, 40px) rotate(360deg);
-            }
-            95% { 
-                transform: translate(120px, 80px) rotate(360deg);
-            }
-            100% { 
-                transform: translate(140px, 100px) rotate(360deg);
-                opacity: 1;
-            }
-        }
+@keyframes thrusterFire {
+    /* Thrusters fire during key maneuvers */
+    0%, 15% { opacity: 0; }
+    16%, 25% { opacity: 0.9; } /* Approach burn */
+    26%, 29% { opacity: 0; }
+    30%, 32% { opacity: 0.7; } /* Orbit insertion */
+    33%, 44% { opacity: 0; }
+    45%, 47% { opacity: 0.6; } /* Orbit correction */
+    48%, 59% { opacity: 0; }
+    60%, 62% { opacity: 0.8; } /* Orbit adjustment */
+    63%, 74% { opacity: 0; }
+    75%, 77% { opacity: 0.5; } /* Orbit maintenance */
+    78%, 89% { opacity: 0; }
+    90%, 95% { opacity: 1; } /* Final rendezvous burn */
+    96%, 100% { opacity: 0; }
+}
 
-        @keyframes thrusterFire {
-            0%, 10%, 90%, 100% { opacity: 0; }
-            15%, 85% { opacity: 0.8; }
-            25%, 75% { opacity: 0.6; }
-            35%, 65% { opacity: 0.9; }
-            45%, 55% { opacity: 0.7; }
-        }
+@keyframes orbitReveal {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
 
-        @keyframes orbitReveal {
-            from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        }
-
-        @keyframes approachPath {
-            0% { opacity: 0; width: 0; }
-            15% { opacity: 0.8; width: 100px; }
-            25% { opacity: 0.6; width: 150px; }
-            85% { opacity: 0.4; width: 200px; }
-            100% { opacity: 0; width: 0; }
-        }
+@keyframes approachPath {
+    /* Show the approach trajectory */
+    0% { 
+        opacity: 0; 
+        width: 0;
+        transform: rotate(15deg);
+    }
+    20% { 
+        opacity: 0.8; 
+        width: 140px;
+        transform: rotate(15deg);
+    }
+    30% { 
+        opacity: 0.4; 
+        width: 140px;
+        transform: rotate(15deg);
+    }
+    40% { 
+        opacity: 0; 
+        width: 0;
+    }
+    100% { 
+        opacity: 0; 
+        width: 0;
+    }
+}
 
         /* Mobile Responsiveness */
         @media (max-width: 1024px) {
@@ -938,7 +967,7 @@
                 <p>At PRISM, our mission is to design, build, and validate a budget friendly, scalable 3DOF satellite platform that demonstrates key technologies for safe and precise Rendezvous and Proximity Operations (RPO). As space becomes increasingly crowded, the ability to approach, dock, service, or refuel spacecraft is more critical than ever. PRISM aims to advance these capabilities at the undergraduate level, bridging classroom theory with real-world engineering challenges.</p>
             </div>
 
-            <div class="rpo-demonstration">
+            <div class="rpo-demonstration rpo-active">
                 <h3 class="demo-title">Rendezvous and Proximity Operations Simulation</h3>
                 <div class="demo-container">
                     <div class="demo-space">
@@ -956,10 +985,7 @@
                         <div class="orbit-path"></div>
                         <div class="approach-path"></div>
                     </div>
-                    <div class="demo-controls">
-                        <button class="demo-btn" id="startDemo">Start RPO Demo</button>
-                        <div class="demo-status">Ready to demonstrate approach, orbit, and rendezvous</div>
-                    </div>
+                    <div class="demo-status-text">Demonstrating autonomous approach, inspection orbit, and rendezvous sequence</div>
                 </div>
             </div>
 
