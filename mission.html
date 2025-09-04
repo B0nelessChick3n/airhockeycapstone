@@ -195,8 +195,8 @@
             margin-bottom: 1rem;
         }
 
-        /* RPO Demonstration Styles */
-        .rpo-demonstration {
+        /* GIF Placeholder Styles */
+        .gif-placeholder {
             background: linear-gradient(135deg, 
                 rgba(255, 255, 255, 0.03) 0%,
                 rgba(50, 205, 50, 0.06) 50%,
@@ -208,7 +208,7 @@
             text-align: center;
         }
 
-        .demo-title {
+        .placeholder-title {
             color: rgba(255, 255, 255, 0.9);
             font-size: 1.4rem;
             letter-spacing: 0.1em;
@@ -216,165 +216,59 @@
             font-weight: 600;
         }
 
-        .demo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .demo-space {
-            position: relative;
-            width: 400px;
-            height: 300px;
-            background: radial-gradient(ellipse at center, rgba(0, 0, 50, 0.3) 0%, transparent 70%);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        .target-satellite {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 30px;
-        }
-.chaser-satellite {
-    position: absolute;
-    top: 10%;
-    left: 5%;
-    width: 35px;
-    height: 25px;
-    opacity: 1;
-}
-
-        .sat-body {
-            width: 100%;
-            height: 70%;
-            background: linear-gradient(135deg, 
-                rgba(200, 200, 200, 0.9) 0%,
-                rgba(150, 150, 150, 0.8) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 3px;
-            position: relative;
-        }
-
-        .sat-body::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60%;
-            height: 40%;
-            background: rgba(50, 150, 255, 0.6);
-            border-radius: 2px;
-        }
-
-        .sat-panel {
-            position: absolute;
-            background: linear-gradient(45deg, 
-                rgba(0, 100, 255, 0.8) 0%,
-                rgba(0, 150, 255, 0.6) 50%,
-                rgba(0, 100, 255, 0.4) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .sat-panel-1 {
-            width: 15px;
-            height: 80%;
-            top: 10%;
-            left: -18px;
-            border-radius: 2px;
-        }
-
-        .sat-panel-2 {
-            width: 15px;
-            height: 80%;
-            top: 10%;
-            right: -18px;
-            border-radius: 2px;
-        }
-
-        .thruster-glow {
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 12px;
-            background: radial-gradient(ellipse, 
-                rgba(255, 100, 0, 0.8) 0%,
-                rgba(255, 200, 0, 0.6) 50%,
-                transparent 100%);
-            border-radius: 50%;
-            opacity: 0;
-        }
-
-        .orbit-path {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            border: 2px dashed rgba(50, 205, 50, 0.4);
-            border-radius: 50%;
-            opacity: 0;
-        }
-
-        .approach-path {
-            position: absolute;
-            top: 20%;
-            left: 15%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, 
-                rgba(255, 215, 0, 0.8) 0%,
-                transparent 100%);
-            opacity: 0;
-            transform-origin: left center;
-        }
-
-        .demo-controls {
+        .placeholder-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1rem;
         }
 
-        .demo-btn {
+        .placeholder-gif-box {
+            width: 400px;
+            height: 300px;
             background: linear-gradient(135deg, 
-                rgba(138, 43, 226, 0.8) 0%,
-                rgba(50, 205, 50, 0.6) 100%);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px;
-            padding: 12px 30px;
-            color: white;
+                rgba(138, 43, 226, 0.1) 0%,
+                rgba(50, 205, 50, 0.1) 50%,
+                rgba(255, 215, 0, 0.1) 100%);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .placeholder-gif-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                transparent 70%);
+            transform: rotate(45deg);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .placeholder-text {
+            color: rgba(255, 255, 255, 0.6);
             font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.2em;
+            z-index: 2;
+            position: relative;
         }
 
-        .demo-btn:hover {
-            background: linear-gradient(135deg, 
-                rgba(138, 43, 226, 1) 0%,
-                rgba(50, 205, 50, 0.8) 100%);
-            border-color: rgba(255, 255, 255, 0.6);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
-        }
-
-        .demo-status-text {
+        .placeholder-description {
             color: rgba(255, 255, 255, 0.7);
             font-size: 1rem;
-            text-align: center;
+            line-height: 1.5;
             font-style: italic;
+            max-width: 500px;
         }
 
         /* Mission objectives styles */
@@ -674,157 +568,62 @@
                 inset 0 0 20px rgba(0, 0, 0, 0.9);
         }
 
-        /* RPO Animation Sequences */
-        .rpo-active .chaser-satellite {
-            animation: rpoSequence 20s ease-in-out infinite;
-        }
-
-        .rpo-active .thruster-glow {
-            animation: thrusterFire 20s ease-in-out infinite;
-        }
-
-        .rpo-active .orbit-path {
-            opacity: 1;
-            animation: orbitReveal 1s ease-out 3s;
-        }
-
-        .rpo-active .approach-path {
-            animation: approachPath 20s ease-in-out infinite;
-        }
-
         /* Animations */
         @keyframes gentleTwinkle {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
-}
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
 
-@keyframes nebulaFloat {
-    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-    33% { transform: translateY(-30px) rotate(3deg) scale(1.08); }
-    66% { transform: translateY(15px) rotate(-2deg) scale(0.95); }
-}
+        @keyframes nebulaFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            33% { transform: translateY(-30px) rotate(3deg) scale(1.08); }
+            66% { transform: translateY(15px) rotate(-2deg) scale(0.95); }
+        }
 
-@keyframes navPrismGlow {
-    0%, 100% { 
-        box-shadow: 
-            inset 0 0 15px rgba(255, 255, 255, 0.1),
-            0 0 20px rgba(138, 43, 226, 0.3);
-        transform: rotate(0deg);
-    }
-    50% { 
-        box-shadow: 
-            inset 0 0 25px rgba(255, 255, 255, 0.2),
-            0 0 40px rgba(50, 205, 50, 0.5);
-        transform: rotate(180deg);
-    }
-}
+        @keyframes navPrismGlow {
+            0%, 100% { 
+                box-shadow: 
+                    inset 0 0 15px rgba(255, 255, 255, 0.1),
+                    0 0 20px rgba(138, 43, 226, 0.3);
+                transform: rotate(0deg);
+            }
+            50% { 
+                box-shadow: 
+                    inset 0 0 25px rgba(255, 255, 255, 0.2),
+                    0 0 40px rgba(50, 205, 50, 0.5);
+                transform: rotate(180deg);
+            }
+        }
 
-@keyframes titleGlow {
-    0%, 100% { 
-        text-shadow: 
-            0 0 20px rgba(138, 43, 226, 0.6),
-            0 0 40px rgba(50, 205, 50, 0.4);
-    }
-    50% { 
-        text-shadow: 
-            0 0 30px rgba(138, 43, 226, 0.8),
-            0 0 60px rgba(50, 205, 50, 0.6);
-    }
-}
+        @keyframes titleGlow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px rgba(138, 43, 226, 0.6),
+                    0 0 40px rgba(50, 205, 50, 0.4);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 30px rgba(138, 43, 226, 0.8),
+                    0 0 60px rgba(50, 205, 50, 0.6);
+            }
+        }
 
-@keyframes planetSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+        @keyframes planetSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-@keyframes wormholeSpin {
-    0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.1); }
-    100% { transform: rotate(360deg) scale(1); }
-}
+        @keyframes wormholeSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
 
-@keyframes rpoSequence {
-    /* Start position - bottom left, distant */
-    0% { 
-        transform: translate(50px, 220px) rotate(0deg); 
-        opacity: 1; 
-    }
-    
-    /* Approach burn - move toward orbit insertion point */
-    10% { 
-        transform: translate(80px, 180px) rotate(15deg); 
-    }
-    
-    /* Orbit insertion - enter circular path at bottom */
-    20% { 
-        transform: translate(120px, 200px) rotate(45deg); 
-    }
-    
-    /* Circle around target - right side */
-    35% { 
-        transform: translate(220px, 140px) rotate(90deg); 
-    }
-    
-    /* Circle around target - top */
-    50% { 
-        transform: translate(180px, 80px) rotate(180deg); 
-    }
-    
-    /* Circle around target - left side */
-    65% { 
-        transform: translate(80px, 100px) rotate(270deg); 
-    }
-    
-    /* Complete circle - back to bottom */
-    80% { 
-        transform: translate(120px, 180px) rotate(360deg); 
-    }
-    
-    /* Final approach for rendezvous */
-    90% { 
-        transform: translate(140px, 160px) rotate(405deg); 
-    }
-    
-    /* Docked position */
-    100% { 
-        transform: translate(160px, 140px) rotate(450deg); 
-    }
-}
-
-@keyframes thrusterFire {
-    /* Approach burn */
-    5%, 12% { opacity: 0.9; }
-    13%, 18% { opacity: 0; }
-    
-    /* Orbit insertion burn */
-    19%, 22% { opacity: 0.8; }
-    23%, 78% { opacity: 0; }
-    
-    /* Station-keeping burns during orbit */
-    34%, 36% { opacity: 0.3; }
-    37%, 48% { opacity: 0; }
-    49%, 51% { opacity: 0.3; }
-    52%, 63% { opacity: 0; }
-    64%, 66% { opacity: 0.3; }
-    67%, 84% { opacity: 0; }
-    
-    /* Final approach burn */
-    85%, 92% { opacity: 1; }
-    93%, 100% { opacity: 0; }
-}
-
-@keyframes orbitReveal {
-    from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes approachPath {
-    0% { opacity: 0; width: 0; transform: rotate(35deg); }
-    10% { opacity: 0.8; width: 100px; transform: rotate(35deg); }
-    20% { opacity: 0.4; width: 100px; transform: rotate(35deg); }
-    25% { opacity: 0; width: 0; }
-    100% { opacity: 0; width: 0; }
-}
+        @keyframes shimmer {
+            0% { transform: rotate(45deg) translateX(-200%); }
+            50% { transform: rotate(45deg) translateX(0%); }
+            100% { transform: rotate(45deg) translateX(200%); }
+        }
 
         /* Mobile Responsiveness */
         @media (max-width: 1024px) {
@@ -864,7 +663,7 @@
                 margin: 1rem;
             }
 
-            .demo-space {
+            .placeholder-gif-box {
                 width: 300px;
                 height: 225px;
             }
@@ -907,7 +706,7 @@
                 padding: 2rem 1rem 1rem;
             }
 
-            .demo-space {
+            .placeholder-gif-box {
                 width: 250px;
                 height: 180px;
             }
@@ -957,25 +756,15 @@
                 <p>At PRISM, our mission is to design, build, and validate a budget friendly, scalable 3DOF satellite platform that demonstrates key technologies for safe and precise Rendezvous and Proximity Operations (RPO). As space becomes increasingly crowded, the ability to approach, dock, service, or refuel spacecraft is more critical than ever. PRISM aims to advance these capabilities at the undergraduate level, bridging classroom theory with real-world engineering challenges.</p>
             </div>
 
-            <div class="rpo-demonstration rpo-active">
-                <h3 class="demo-title">Rendezvous and Proximity Operations Simulation</h3>
-                <div class="demo-container">
-                    <div class="demo-space">
-                        <div class="target-satellite">
-                            <div class="sat-body"></div>
-                            <div class="sat-panel sat-panel-1"></div>
-                            <div class="sat-panel sat-panel-2"></div>
-                        </div>
-                        <div class="chaser-satellite">
-                            <div class="sat-body"></div>
-                            <div class="sat-panel sat-panel-1"></div>
-                            <div class="sat-panel sat-panel-2"></div>
-                            <div class="thruster-glow"></div>
-                        </div>
-                        <div class="orbit-path"></div>
-                        <div class="approach-path"></div>
+            <div class="gif-placeholder">
+                <h3 class="placeholder-title">Rendezvous and Proximity Operations Visualization</h3>
+                <div class="placeholder-container">
+                    <div class="placeholder-gif-box">
+                        <div class="placeholder-text">GIF Placeholder</div>
                     </div>
-                    <div class="demo-status-text">Demonstrating autonomous approach, inspection orbit, and rendezvous sequence</div>
+                    <div class="placeholder-description">
+                        Future location for RPO demonstration animation showing autonomous approach, inspection orbit, and rendezvous sequence
+                    </div>
                 </div>
             </div>
 
