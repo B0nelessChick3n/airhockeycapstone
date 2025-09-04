@@ -744,64 +744,38 @@
 }
 
 @keyframes rpoSequence {
-    /* Phase 1: Initial approach from distance */
-    0% { 
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 1;
-    }
+    /* Start at distance */
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
     
-    /* Phase 2: Approach maneuver */
-    20% { 
-        transform: translate(120px, 60px) rotate(25deg);
-    }
+    /* Approach burn, then coast to intercept */
+    5% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(120px, 80px) rotate(15deg); }
     
-    /* Phase 3: Begin inspection orbit - far side */
-    30% { 
-        transform: translate(200px, 120px) rotate(90deg);
-    }
+    /* Orbit insertion burn, then begin circular inspection */
+    30% { transform: translate(140px, 100px) rotate(45deg); }
+    45% { transform: translate(180px, 140px) rotate(90deg); }
+    55% { transform: translate(160px, 180px) rotate(135deg); }
+    65% { transform: translate(120px, 160px) rotate(180deg); }
+    75% { transform: translate(80px, 120px) rotate(225deg); }
+    85% { transform: translate(100px, 80px) rotate(270deg); }
     
-    /* Phase 4: Inspection orbit - bottom */
-    45% { 
-        transform: translate(160px, 200px) rotate(180deg);
-    }
-    
-    /* Phase 5: Inspection orbit - near side */
-    60% { 
-        transform: translate(80px, 160px) rotate(270deg);
-    }
-    
-    /* Phase 6: Complete orbit - top */
-    75% { 
-        transform: translate(120px, 100px) rotate(360deg);
-    }
-    
-    /* Phase 7: Final approach for rendezvous */
-    90% { 
-        transform: translate(140px, 130px) rotate(405deg);
-    }
-    
-    /* Phase 8: Rendezvous position */
-    100% { 
-        transform: translate(150px, 140px) rotate(450deg);
-        opacity: 1;
-    }
+    /* Final rendezvous burn, then dock */
+    90% { transform: translate(120px, 100px) rotate(315deg); }
+    100% { transform: translate(140, 120px) rotate(360deg); }
 }
 
 @keyframes thrusterFire {
-    /* Thrusters fire during key maneuvers */
-    0%, 15% { opacity: 0; }
-    16%, 25% { opacity: 0.9; } /* Approach burn */
-    26%, 29% { opacity: 0; }
-    30%, 32% { opacity: 0.7; } /* Orbit insertion */
-    33%, 44% { opacity: 0; }
-    45%, 47% { opacity: 0.6; } /* Orbit correction */
-    48%, 59% { opacity: 0; }
-    60%, 62% { opacity: 0.8; } /* Orbit adjustment */
-    63%, 74% { opacity: 0; }
-    75%, 77% { opacity: 0.5; } /* Orbit maintenance */
-    78%, 89% { opacity: 0; }
-    90%, 95% { opacity: 1; } /* Final rendezvous burn */
-    96%, 100% { opacity: 0; }
+    /* Initial approach burn */
+    0%, 8% { opacity: 0.9; }
+    9%, 24% { opacity: 0; }
+    
+    /* Orbit insertion burn */
+    25%, 32% { opacity: 0.8; }
+    33%, 84% { opacity: 0; }
+    
+    /* Final rendezvous burn */
+    85%, 92% { opacity: 1; }
+    93%, 100% { opacity: 0; }
 }
 
 @keyframes orbitReveal {
@@ -810,30 +784,11 @@
 }
 
 @keyframes approachPath {
-    /* Show the approach trajectory */
-    0% { 
-        opacity: 0; 
-        width: 0;
-        transform: rotate(15deg);
-    }
-    20% { 
-        opacity: 0.8; 
-        width: 140px;
-        transform: rotate(15deg);
-    }
-    30% { 
-        opacity: 0.4; 
-        width: 140px;
-        transform: rotate(15deg);
-    }
-    40% { 
-        opacity: 0; 
-        width: 0;
-    }
-    100% { 
-        opacity: 0; 
-        width: 0;
-    }
+    0% { opacity: 0; width: 0; transform: rotate(12deg); }
+    8% { opacity: 0.8; width: 140px; transform: rotate(12deg); }
+    25% { opacity: 0.6; width: 140px; transform: rotate(12deg); }
+    30% { opacity: 0; width: 0; }
+    100% { opacity: 0; width: 0; }
 }
 
         /* Mobile Responsiveness */
