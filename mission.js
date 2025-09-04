@@ -33,6 +33,60 @@
             }
         }
 
+        // RPO Demonstration functionality
+        function initRPODemo() {
+            const startBtn = document.getElementById('startDemo');
+            const demoContainer = document.querySelector('.demo-container');
+            const statusText = document.querySelector('.demo-status');
+            const demoSpace = document.querySelector('.demo-space');
+            
+            let isRunning = false;
+            
+            startBtn.addEventListener('click', () => {
+                if (!isRunning) {
+                    // Start demonstration
+                    isRunning = true;
+                    demoSpace.classList.add('rpo-active');
+                    startBtn.textContent = 'Stop Demo';
+                    startBtn.style.background = 'linear-gradient(135deg, rgba(220, 50, 50, 0.8) 0%, rgba(180, 50, 50, 0.6) 100%)';
+                    
+                    // Update status messages during demo
+                    const statusMessages = [
+                        'Initializing approach sequence...',
+                        'Chaser satellite deploying thrusters...',
+                        'Beginning orbital intercept...',
+                        'Executing proximity operations...',
+                        'Maintaining safe distance...',
+                        'Completing orbital survey...',
+                        'Preparing for rendezvous...',
+                        'Mission objectives achieved!',
+                        'Ready to demonstrate approach, orbit, and rendezvous'
+                    ];
+                    
+                    let messageIndex = 0;
+                    const statusInterval = setInterval(() => {
+                        statusText.textContent = statusMessages[messageIndex];
+                        messageIndex++;
+                        
+                        if (messageIndex >= statusMessages.length - 1) {
+                            clearInterval(statusInterval);
+                            setTimeout(() => {
+                                statusText.textContent = statusMessages[statusMessages.length - 1];
+                            }, 1000);
+                        }
+                    }, 1500);
+                    
+                } else {
+                    // Stop demonstration
+                    isRunning = false;
+                    demoSpace.classList.remove('rpo-active');
+                    startBtn.textContent = 'Start RPO Demo';
+                    startBtn.style.background = 'linear-gradient(135deg, rgba(138, 43, 226, 0.8) 0%, rgba(50, 205, 50, 0.6) 100%)';
+                    statusText.textContent = 'Ready to demonstrate approach, orbit, and rendezvous';
+                }
+            });
+        }
+
         // Custom cursor functionality
         const cursor = document.querySelector('.custom-cursor');
         
@@ -41,17 +95,17 @@
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
             });
-
-            // Cursor hover effects for team members and nav
+            
+            // Cursor hover effects for team members, nav, and demo button
             document.addEventListener('mouseenter', (e) => {
-                if (e.target.closest('.team-member') || e.target.closest('.prism-nav')) {
+                if (e.target.closest('.team-member') || e.target.closest('.prism-nav') || e.target.closest('.demo-btn')) {
                     cursor.style.transform = 'scale(1.5)';
                     cursor.style.boxShadow = '0 0 25px rgba(138, 43, 226, 0.8), 0 0 50px rgba(138, 43, 226, 0.4)';
                 }
             }, true);
-
+            
             document.addEventListener('mouseleave', (e) => {
-                if (e.target.closest('.team-member') || e.target.closest('.prism-nav')) {
+                if (e.target.closest('.team-member') || e.target.closest('.prism-nav') || e.target.closest('.demo-btn')) {
                     cursor.style.transform = 'scale(1)';
                     cursor.style.boxShadow = '0 0 10px rgba(138, 43, 226, 0.6), 0 0 20px rgba(138, 43, 226, 0.3)';
                 }
@@ -61,14 +115,23 @@
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', () => {
             createStars();
+            initRPODemo();
         });
 
         // Performance optimization - pause animations when tab is not visible
         document.addEventListener('visibilitychange', () => {
             const spaceContainer = document.querySelector('.space-container');
+            const demoSpace = document.querySelector('.demo-space');
+            
             if (document.hidden) {
                 spaceContainer.style.animationPlayState = 'paused';
+                if (demoSpace.classList.contains('rpo-active')) {
+                    demoSpace.style.animationPlayState = 'paused';
+                }
             } else {
                 spaceContainer.style.animationPlayState = 'running';
+                if (demoSpace.classList.contains('rpo-active')) {
+                    demoSpace.style.animationPlayState = 'running';
+                }
             }
         });
